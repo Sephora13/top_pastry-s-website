@@ -76,7 +76,7 @@ export default function AdminPage() {
             Gestion des Produits
           </h2>
           <Link
-            href="/products"
+            href="/produits"
             className="bg-amber-600 text-white px-4 py-2 rounded hover:bg-amber-700 transition"
           >
             <FontAwesomeIcon icon={faEye} className="mr-1" />
