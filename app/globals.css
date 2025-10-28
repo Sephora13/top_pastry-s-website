@@ -1,26 +1,77 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Couleurs principales */
+  --background: #FFFDF8;     /* Crème douce, ambiance lumineuse */
+  --foreground: #3C2F2F;     /* Brun cacao, bon contraste pour le texte */
+
+  /* Tons gourmands */
+  --caramel: #E67E22;        /* Couleur appétissante de caramel ou jus d’orange */
+  --coffee: #8B4513;         /* Brun café ou croissant doré */
+  --choco: #6B3E26;          /* Chocolat chaud */
+  --cream: #F7E7CE;          /* Crème vanille, couleur douce de pâtisserie */
+
+  /* Fraîcheur & naturel */
+  --mint: #A8E6CF;           /* Menthe fraîche */
+  --salad: #81C784;          /* Vert salade */
+  --strawberry: #FF6F61;     /* Fraise / fruits rouges */
+  --lemon: #F7D358;          /* Jaune citron doux */
+
+  /* Gris neutres pour structure */
+  --neutral-light: #EAEAEA;
+  --neutral-dark: #444444;
 }
+
+
+
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-josefin);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+.bg-foreground {
+  background-color: var(--foreground);
+}
+
+.text-foreground {
+  color: var(--foreground);
+} 
+
+.bg-salad {
+  background-color: var(--salad);
+}
+
+.bg-mint{
+  background-color: var(--mint);
+}
+.bg-coffee {
+  background-color: var(--coffee);
+}
+
+.bg-caramel {
+  background-color: var(--caramel);
+}
+
+.bg-cream {
+  background-color: var(--cream);
+} 
+.text-choco {
+  color: var(--choco);
+}
+
+.text-cream {
+  color: var(--cream);
+}
+
+.text-salad {
+  color: var(--salad);
 }
