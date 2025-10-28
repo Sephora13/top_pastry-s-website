@@ -81,7 +81,7 @@ export const defaultProducts: Product[] = [
   {
     id: 10,
     name: 'Croissant',
-    price: 2.25,
+    price: 300,
     category: 'petit-dejeuner',
     image: '/image/salade_jus.jpg',
     description: 'Un croissant français traditionnel, beurré et croustillant, fraîchement sorti du four.'
@@ -89,7 +89,7 @@ export const defaultProducts: Product[] = [
   {
     id: 11,
     name: 'Croissant',
-    price: 2.25,
+    price: 300,
     category: 'petit-dejeuner',
     image: '/image/salade_jus.jpg',
     description: 'Un croissant français traditionnel, beurré et croustillant, fraîchement sorti du four.'

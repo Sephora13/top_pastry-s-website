@@ -70,7 +70,7 @@ export default function Footer() {
         </div>
         
         <div className="border-t border-gray-700 mt-8 pt-6 text-center text-sm text-gray-400">
-          <p>&copy; 2024 Top Pastry. Tous droits réservés.</p>
+          <p>&copy; 2025 ICOLABS. Tous droits réservés.</p>
         </div>
       </div>
     </footer>
