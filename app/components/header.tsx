@@ -14,7 +14,7 @@ export default function Header() {
         {/* Logo */}
         <Link href="/" className="flex items-center">
           <FontAwesomeIcon icon={faCoffee} className="text-xl mr-2" />
-          <span className="font-bold text-xl">Top Pastry  & 
+          <span className="font-bold text-xl">Top Pastry  & <br />
             <span className="font-bold text-xl text-green-medium"> Salade</span>
             </span>
         </Link>

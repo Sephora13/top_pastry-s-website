@@ -283,18 +283,37 @@ export default function Home() {
 
       {/* Join Section */}
       <section className="py-12 bg-[#f5e6d8]">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-2xl font-bold mb-4">
-            Le plaisir sain commence ici
-          </h2>
-          <p className="mb-6">
-            Savourez nos créations gourmandes et nos jus détox naturels — un pur moment de douceur.
-          </p>
-          <button className="bg-red-dark hover:bg-[#5D2906] text-white px-6 py-2 rounded-full transition">
-            Découvrir nos produits
-          </button>
+        <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+          
+          {/* Texte à gauche */}
+          <div className="text-center md:text-left">
+            <h2 className="text-2xl font-bold mb-4 text-[#8B4513]">
+              Le plaisir sain commence ici
+            </h2>
+            <p className="text-gray-700 mb-6">
+              Savourez nos créations gourmandes et nos jus détox naturels — un pur moment de douceur.
+            </p>
+            <p className="text-gray-600">
+              📍 Retrouvez-nous à Cotonou, pour une expérience pleine de saveurs et de fraîcheur.
+            </p>
+          </div>
+
+          {/* Google Maps à droite */}
+          <div className="w-full h-80 rounded-xl overflow-hidden shadow-lg">
+            <iframe
+              title="Localisation"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31515.266964026777!2d2.3770412!3d6.3702928!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x102357f59d1a93a1%3A0x963d2c983eb8ff48!2sCotonou!5e0!3m2!1sfr!2sbj!4v1730200000000!5m2!1sfr!2sbj"
+              width="100%"
+              height="100%"
+        
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+
         </div>
       </section>
+
 
       <Footer/>
     </>
