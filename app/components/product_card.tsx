@@ -35,7 +35,7 @@ export default function ProductCard({ product, showBuyButton = true }: ProductCa
           {product.description}
         </p>
         <div className="flex justify-between items-center">
-          <span className="font-bold text-[#8B4513]">
+          <span className="font-bold text-orange-medium">
             {product.price.toFixed(2)} FCFA
           </span>
           {showBuyButton && (
