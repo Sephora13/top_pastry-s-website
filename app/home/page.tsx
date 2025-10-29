@@ -119,32 +119,32 @@ export default function Home() {
       </section>
 
       {/* Category Icons */}
-      <section className="bg-red-dark py-6">
+      <section className="bg-red-light py-6">
         <div className="container mx-auto px-4">
           <div className="flex justify-center space-x-12">
             <div className="flex flex-col items-center">
               <div className="bg-white p-4 rounded-full mb-2">
-                <FontAwesomeIcon icon={faCoffee} className="text-[#8B4513] text-2xl" />
+                <FontAwesomeIcon icon={faCoffee} className="text-red-dark text-2xl" />
               </div>
-              <span className="text-sm text-white">Gâteau </span>
+              <span className="text-sm text-red-dark">Gâteau </span>
             </div>
             <div className="flex flex-col items-center">
               <div className="bg-white p-4 rounded-full mb-2">
-                <FontAwesomeIcon icon={faGlassWhiskey} className="text-[#8B4513] text-2xl" />
+                <FontAwesomeIcon icon={faGlassWhiskey} className="text-red-dark text-2xl" />
               </div>
-              <span className="text-sm text-white">Croissants & Friands</span>
+              <span className="text-sm text-red-dark">Croissants & Friands</span>
             </div>
             <div className="flex flex-col items-center">
               <div className="bg-white p-4 rounded-full mb-2">
-                <FontAwesomeIcon icon={faMugHot} className="text-[#8B4513] text-2xl" />
+                <FontAwesomeIcon icon={faMugHot} className="text-red-dark text-2xl" />
               </div>
-              <span className="text-sm text-white">Salade</span>
+              <span className="text-sm text-red-dark">Salade</span>
             </div>
             <div className="flex flex-col items-center">
               <div className="bg-white p-4 rounded-full mb-2">
-                <FontAwesomeIcon icon={faCookie} className="text-[#8B4513] text-2xl" />
+                <FontAwesomeIcon icon={faCookie} className="text-red-dark text-2xl" />
               </div>
-              <span className="text-sm text-white">Jus</span>
+              <span className="text-sm text-red-dark">Jus</span>
             </div>
           </div>
         </div>

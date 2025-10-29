@@ -6,7 +6,7 @@ import { faFacebookF, faTwitter, faInstagram, faLinkedinIn } from '@fortawesome/
 
 export default function Footer() {
   return (
-    <footer className="bg-red-light  py-8">
+    <footer className="bg-red-dark  py-8">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
@@ -15,14 +15,14 @@ export default function Footer() {
               <span className="font-bold text-xl">Top Pastry & 
             <span className="font-bold text-xl text-green-medium"> Salade</span></span>
             </div>
-            <p className="text-sm text-red-dark">
+            <p className="text-sm text-white">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
             </p>
           </div>
           
           <div>
             <h3 className="font-bold mb-4">LIENS RAPIDES</h3>
-            <ul className="space-y-2 text-sm text-red-dark">
+            <ul className="space-y-2 text-sm text-white">
               <li>
                 <Link href="/" className="hover:text-white transition">
                   Accueil
@@ -43,7 +43,7 @@ export default function Footer() {
           
           <div>
             <h3 className="font-bold mb-4">CONTACT</h3>
-            <ul className="space-y-2 text-sm text-red-dark">
+            <ul className="space-y-2 text-sm text-white">
               <li>Djèvali</li>
               <li>Porto-Novo, Benin</li>
               <li>+123 456 7890</li>
@@ -54,16 +54,16 @@ export default function Footer() {
           <div>
             <h3 className="font-bold mb-4 ">MÉDIAS SOCIAUX</h3>
             <div className="flex space-x-4">
-              <a href="#" className="hover:text-[#f5e6d8] text-red-dark transition">
+              <a href="#" className="hover:text-[#f5e6d8] text-white transition">
                 <FontAwesomeIcon icon={faFacebookF} />
               </a>
-              <a href="#" className="hover:text-[#f5e6d8] text-red-dark transition">
+              <a href="#" className="hover:text-[#f5e6d8] text-white transition">
                 <FontAwesomeIcon icon={faTwitter} />
               </a>
-              <a href="#" className="hover:text-[#f5e6d8] text-red-dark transition">
+              <a href="#" className="hover:text-[#f5e6d8] text-white transition">
                 <FontAwesomeIcon icon={faInstagram} />
               </a>
-              <a href="#" className="hover:text-[#f5e6d8] text-red-dark transition">
+              <a href="#" className="hover:text-[#f5e6d8] text-white transition">
                 <FontAwesomeIcon icon={faLinkedinIn} />
               </a>
             </div>
