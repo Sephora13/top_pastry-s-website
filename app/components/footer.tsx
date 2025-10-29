@@ -12,7 +12,8 @@ export default function Footer() {
           <div>
             <div className="flex items-center mb-4  ">
               <FontAwesomeIcon icon={faCoffee} className="text-xl mr-2" />
-              <span className="font-bold text-xl">Top Pastry</span>
+              <span className="font-bold text-xl">Top Pastry & 
+            <span className="font-bold text-xl text-green-medium"> Salade</span></span>
             </div>
             <p className="text-sm text-red-dark">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.

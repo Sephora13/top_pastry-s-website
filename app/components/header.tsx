@@ -44,7 +44,7 @@ export default function Header() {
 
       {/* Menu mobile */}
       {isOpen && (
-        <div className="md:hidden bg-[#5D2906] border-t border-[#7a3f0b]">
+        <div className="md:hidden bg-red-light border-t border-[#7a3f0b]">
           <div className="flex flex-col space-y-3 px-4 py-4">
             <Link
               href="/"
