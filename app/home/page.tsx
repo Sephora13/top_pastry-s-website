@@ -119,7 +119,7 @@ export default function Home() {
       </section>
 
       {/* Category Icons */}
-      <section className="bg-red-light py-6">
+      <section className="bg-orange-light py-6">
         <div className="container mx-auto px-4">
           <div className="flex justify-center space-x-12">
             <div className="flex flex-col items-center">
@@ -282,7 +282,7 @@ export default function Home() {
       </section>
 
       {/* Join Section */}
-      <section className="py-12 bg-[#f5e6d8]">
+      <section className="py-12 bg-orange-light">
         <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           
           {/* Texte à gauche */}
