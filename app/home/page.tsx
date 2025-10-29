@@ -108,11 +108,11 @@ export default function Home() {
           <div className="absolute inset-0  bg-opacity-50"></div>
         </div>
         <div className="relative align-middle container mx-auto px-4 h-full flex flex-col justify-center">
-          <h2 className="text-orange-medium text-xl mb-2">Bienvenue !!</h2>
+          <h2 className="text-orange-light text-xl mb-2">Bienvenue !!</h2>
           <h1 className="text-white text-4xl font-bold mb-6">
             Des douceurs pleines de saveurs <br /> et des jus détox naturels, préparés <br /> avec amour pour votre plaisir et votre santé.
           </h1>
-          <button className="bg-orange-medium hover:bg-[#5D2906] text-white px-6 py-2 rounded-full w-48 transition">
+          <button className="bg-orange-light hover:bg-[#5D2906] text-black px-6 py-2 rounded-full w-48 transition">
             Acheter maintenant
           </button>
         </div>

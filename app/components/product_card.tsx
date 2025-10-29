@@ -28,7 +28,7 @@ export default function ProductCard({ product, showBuyButton = true }: ProductCa
       </div>
       
       <div className="p-4">
-        <h3 className="text-lg font-semibold text-orange-medium mb-2">
+        <h3 className="text-lg font-semibold text-black mb-2">
           {product.name}
         </h3>
         <p className="text-gray-500 text-sm mb-4 h-12 overflow-hidden">
