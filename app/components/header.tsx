@@ -9,12 +9,14 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="bg-[#5D2906] text-white">
+    <header className="bg-red-light text-white">
       <nav className="container mx-auto px-4 py-3 flex justify-between items-center">
         {/* Logo */}
         <Link href="/" className="flex items-center">
           <FontAwesomeIcon icon={faCoffee} className="text-xl mr-2" />
-          <span className="font-bold text-xl">Top Pastry</span>
+          <span className="font-bold text-xl">Top Pastry  & 
+            <span className="font-bold text-xl text-green-medium"> Salade</span>
+            </span>
         </Link>
 
         {/* Menu desktop */}

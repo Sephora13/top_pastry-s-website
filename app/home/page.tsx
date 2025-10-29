@@ -41,6 +41,50 @@ export default function Home() {
     ]
   ];
 
+  const slides = [
+  [
+      {
+        image: "/image/testimonial.jpg",
+      
+      },
+      {
+        image: "/image/testimonial.jpg",
+      },
+      {
+        image: "/image/testimonial.jpg",
+      },
+      
+    ],
+
+    [
+      {
+        image: "/image/testimonial.jpg",
+      },
+      {
+        image: "/image/testimonial.jpg",
+      },
+      {
+        image: "/image/testimonial.jpg",
+      },
+      
+    ],
+
+    [
+      {
+        image: "/image/testimonial.jpg",
+      },
+      {
+        image: "/image/testimonial.jpg",
+      },
+      {
+        image: "/image/testimonial.jpg",
+      },
+      
+    ],
+  
+  ];
+
+
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide(prev => (prev + 1) % 3);
@@ -55,7 +99,7 @@ export default function Home() {
       <section className="relative h-150">
         <div className="absolute inset-0">
           <Image
-            src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+            src="/image/bg3.jpg"
             alt="Coffee"
             fill
             className="object-cover"
@@ -63,44 +107,44 @@ export default function Home() {
           />
           <div className="absolute inset-0  bg-opacity-50"></div>
         </div>
-        <div className="relative container mx-auto px-4 h-full flex flex-col justify-center">
-          <h2 className="text-white text-xl mb-2">Bienvenue !!</h2>
+        <div className="relative align-middle container mx-auto px-4 h-full flex flex-col justify-center">
+          <h2 className="text-orange-medium text-xl mb-2">Bienvenue !!</h2>
           <h1 className="text-white text-4xl font-bold mb-6">
-            Nous vous proposons le meilleur<br />service de la ville
+            Des douceurs pleines de saveurs <br /> et des jus détox naturels, préparés <br /> avec amour pour votre plaisir et votre santé.
           </h1>
-          <button className="bg-caramel hover:bg-[#5D2906] text-white px-6 py-2 rounded-full w-48 transition">
+          <button className="bg-orange-medium hover:bg-[#5D2906] text-white px-6 py-2 rounded-full w-48 transition">
             Acheter maintenant
           </button>
         </div>
       </section>
 
       {/* Category Icons */}
-      <section className="bg-cream py-6">
+      <section className="bg-red-dark py-6">
         <div className="container mx-auto px-4">
           <div className="flex justify-center space-x-12">
             <div className="flex flex-col items-center">
               <div className="bg-white p-4 rounded-full mb-2">
                 <FontAwesomeIcon icon={faCoffee} className="text-[#8B4513] text-2xl" />
               </div>
-              <span className="text-sm">Gâteau </span>
+              <span className="text-sm text-white">Gâteau </span>
             </div>
             <div className="flex flex-col items-center">
               <div className="bg-white p-4 rounded-full mb-2">
                 <FontAwesomeIcon icon={faGlassWhiskey} className="text-[#8B4513] text-2xl" />
               </div>
-              <span className="text-sm">Croissants & Friands</span>
+              <span className="text-sm text-white">Croissants & Friands</span>
             </div>
             <div className="flex flex-col items-center">
               <div className="bg-white p-4 rounded-full mb-2">
                 <FontAwesomeIcon icon={faMugHot} className="text-[#8B4513] text-2xl" />
               </div>
-              <span className="text-sm">Salade</span>
+              <span className="text-sm text-white">Salade</span>
             </div>
             <div className="flex flex-col items-center">
               <div className="bg-white p-4 rounded-full mb-2">
                 <FontAwesomeIcon icon={faCookie} className="text-[#8B4513] text-2xl" />
               </div>
-              <span className="text-sm">Jus</span>
+              <span className="text-sm text-white">Jus</span>
             </div>
           </div>
         </div>
@@ -131,7 +175,7 @@ export default function Home() {
       </section>
 
       {/* Coffee Beans Promotion */}
-      <section className="py-12 bg-[#f5e6d8]">
+      <section className="py-12 bg-orange-light">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row items-center gap-8">
             <div className="md:w-1/2 relative h-64 md:h-96 w-full">
@@ -146,7 +190,7 @@ export default function Home() {
               <h2 className="text-2xl font-bold mb-4">
                 Découvrez nos meilleurs<br />produits
               </h2>
-              <button className="bg-[#8B4513] hover:bg-[#5D2906] text-white px-6 py-2 rounded-full transition">
+              <button className="bg-red-dark hover:bg-[#5D2906] text-white px-6 py-2 rounded-full transition">
                 Voir nos produits
               </button>
             </div>
@@ -207,7 +251,33 @@ export default function Home() {
                 </div>
               ))}
             </div>
-          </div>
+          </div> 
+
+          {/* <div className="relative overflow-hidden">
+            <div
+              className="flex transition-transform duration-200"
+              style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+            >
+              {slides.map((group, idx) => (
+                <div key={idx} className="min-w-full">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    {group.map((item, i) => (
+                      <div key={i} className="bg-white rounded-lg shadow-md overflow-hidden">
+                        <Image
+                          src={item.image}
+                          alt="temoignage"
+                          width={200}
+                          height={100}
+                          className="w-full h-64 "
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div> */}
+
         </div>
       </section>
 
@@ -215,14 +285,17 @@ export default function Home() {
       <section className="py-12 bg-[#f5e6d8]">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-2xl font-bold mb-4">
-            Rejoignez nous et obtenez 15% de réduction
+            Le plaisir sain commence ici
           </h2>
-          <p className="mb-6">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          <button className="bg-[#8B4513] hover:bg-[#5D2906] text-white px-6 py-2 rounded-full transition">
-            S&apos;inscrire
+          <p className="mb-6">
+            Savourez nos créations gourmandes et nos jus détox naturels — un pur moment de douceur.
+          </p>
+          <button className="bg-red-dark hover:bg-[#5D2906] text-white px-6 py-2 rounded-full transition">
+            Découvrir nos produits
           </button>
         </div>
       </section>
+
       <Footer/>
     </>
   );

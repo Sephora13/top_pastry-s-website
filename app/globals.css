@@ -1,26 +1,31 @@
 @import "tailwindcss";
-
 :root {
-  /* Couleurs principales */
-  --background: #FFFDF8;     /* Crème douce, ambiance lumineuse */
-  --foreground: #3C2F2F;     /* Brun cacao, bon contraste pour le texte */
+  /* 🌞 Couleurs principales */
+  --background: #FFFDFC;     /* Blanc légèrement chaud, doux pour les yeux */
+  --foreground: #1E1E1E;     /* Noir profond pour un bon contraste */
 
-  /* Tons gourmands */
-  --caramel: #E67E22;        /* Couleur appétissante de caramel ou jus d’orange */
-  --coffee: #8B4513;         /* Brun café ou croissant doré */
-  --choco: #6B3E26;          /* Chocolat chaud */
-  --cream: #F7E7CE;          /* Crème vanille, couleur douce de pâtisserie */
+  /* 🍓 Nuances de rouge (chaleur et appétit) */
+  --red-light: #FFB3A7;      /* Rouge pastel doux (macaron fraise) */
+  --red-medium: #E63946;     /* Rouge framboise / fraise mûre */
+  --red-dark: #8B0000;       /* Rouge vin profond */
 
-  /* Fraîcheur & naturel */
-  --mint: #A8E6CF;           /* Menthe fraîche */
-  --salad: #81C784;          /* Vert salade */
-  --strawberry: #FF6F61;     /* Fraise / fruits rouges */
-  --lemon: #F7D358;          /* Jaune citron doux */
+  /* 🍊 Nuances d’orange (énergie et gourmandise) */
+  --orange-light: #FFD8A8;   /* Orange clair, ton crème brûlée */
+  --orange-medium: #F77F00;  /* Orange pâtissier / caramel doux */
+  --orange-dark: #C25E00;    /* Orange foncé, type croûte dorée */
 
-  /* Gris neutres pour structure */
-  --neutral-light: #EAEAEA;
-  --neutral-dark: #444444;
+  /* 🌿 Nuances de vert (fraîcheur et naturel) */
+  --green-light: #CFF6CF;    /* Vert menthe glacée */
+  --green-medium: #58B368;   /* Vert pistache ou basilic */
+  --green-dark: #2E7D32;     /* Vert feuille / nature profonde */
+
+  /* ⚫ Nuances neutres (structure et élégance) */
+  --black: #000000;          /* Noir pur */
+  --gray-dark: #333333;      /* Gris anthracite */
+  --gray-light: #E6E6E6;     /* Gris clair doux */
+  --white: #FFFFFF;          /* Blanc pur */
 }
+
 
 
 
@@ -38,40 +43,45 @@ body {
   color: var(--foreground);
 }
 
-.bg-foreground {
-  background-color: var(--foreground);
+.bg-red-dark{
+  background-color: var(--red-dark);
 }
 
-.text-foreground {
-  color: var(--foreground);
+.bg-red-medium{
+  background-color: var(--red-medium);
+}
+
+.bg-red-light{
+  background-color: var(--red-light);
+}
+
+.bg-orange-medium{
+  background-color: var(--orange-medium);
 } 
 
-.bg-salad {
-  background-color: var(--salad);
+.bg-orange-light{
+  background-color: var(--orange-light);
 }
 
-.bg-mint{
-  background-color: var(--mint);
-}
-.bg-coffee {
-  background-color: var(--coffee);
+.bg-green-medium{
+  background-color: var(--green-medium);
 }
 
-.bg-caramel {
-  background-color: var(--caramel);
+.text-orange-medium{
+  color: var(--orange-medium);
+}
+.text-orange-light{
+  color: var(--orange-light);
 }
 
-.bg-cream {
-  background-color: var(--cream);
-} 
-.text-choco {
-  color: var(--choco);
+.text-green-medium{
+  color: var(--green-medium);
 }
 
-.text-cream {
-  color: var(--cream);
+.text-red-dark{
+  color: var(--red-dark);
 }
 
-.text-salad {
-  color: var(--salad);
+.text-red-medium{
+  color: var(--red-medium);
 }
