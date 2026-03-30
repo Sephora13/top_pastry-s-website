@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import { Product } from '../types';
+import { motion } from 'framer-motion';
 
 interface ProductCardProps {
   product: Product;
@@ -12,11 +13,17 @@ interface ProductCardProps {
 
 export default function ProductCard({ product, showBuyButton = true }: ProductCardProps) {
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden relative">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      whileHover={{ scale: 1.05 }}
+      className="bg-white rounded-lg shadow-md overflow-hidden relative"
+    >
       {/* <button className="absolute top-2 right-2 bg-white rounded-full p-2 shadow-md z-10 hover:bg-gray-100 transition">
         <FontAwesomeIcon icon={faHeart} className="text-[#8B4513]" />
       </button> */}
-      
+
       <div className="relative h-48 w-full">
         <Image
           src={product.image}
@@ -26,7 +33,7 @@ export default function ProductCard({ product, showBuyButton = true }: ProductCa
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
         />
       </div>
-      
+
       <div className="p-4">
         <h3 className="text-lg font-semibold text-black mb-2">
           {product.name}
@@ -45,6 +52,6 @@ export default function ProductCard({ product, showBuyButton = true }: ProductCa
           )}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }

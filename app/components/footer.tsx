@@ -6,73 +6,70 @@ import { faFacebookF, faTwitter, faInstagram, faLinkedinIn } from '@fortawesome/
 
 export default function Footer() {
   return (
-    <footer className="bg-red-dark  py-8">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div>
-            <div className="flex items-center mb-4  ">
-              <FontAwesomeIcon icon={faCoffee} className="text-xl mr-2" />
-              <span className="font-bold text-xl">Top Pastry & 
-            <span className="font-bold text-xl text-green-medium"> Salade</span></span>
-            </div>
-            <p className="text-sm text-white">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    <footer className="bg-primary text-white py-16">
+      <div className="container mx-auto px-6 md:px-12">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-8 lg:gap-12">
+          
+          {/* Logo / First column */}
+          <div className="col-span-1">
+            <h3 className="font-bold text-xl mb-4 tracking-wide">Lorem</h3>
+            <p className="text-[13px] text-white/80 leading-relaxed font-medium">
+              Lorem ipsum lorem ipsum
             </p>
           </div>
-          
-          <div>
-            <h3 className="font-bold mb-4">LIENS RAPIDES</h3>
-            <ul className="space-y-2 text-sm text-white">
-              <li>
-                <Link href="/" className="hover:text-white transition">
-                  Accueil
-                </Link>
-              </li>
-              <li>
-                <Link href="/products" className="hover:text-white transition">
-                  Produits
-                </Link>
-              </li>
-              <li>
-                <Link href="/admin" className="hover:text-white transition">
-                  Administration
-                </Link>
-              </li>
+
+          {/* Column 2 */}
+          <div className="col-span-1">
+            <h3 className="font-bold text-base mb-6 tracking-wide">Lorem</h3>
+            <ul className="space-y-4 text-[13px] text-white/80 font-medium">
+              <li><Link href="/" className="hover:text-white transition">Lorem ipsum lorem</Link></li>
+              <li><Link href="/" className="hover:text-white transition">Lorem</Link></li>
+              <li><Link href="/" className="hover:text-white transition">ipsum lorem</Link></li>
+              <li><Link href="/" className="hover:text-white transition">ipsum Lorem</Link></li>
+              <li><Link href="/" className="hover:text-white transition">ipsum Lorem ipsum</Link></li>
             </ul>
           </div>
-          
-          <div>
-            <h3 className="font-bold mb-4">CONTACT</h3>
-            <ul className="space-y-2 text-sm text-white">
-              <li>Djèvali</li>
-              <li>Porto-Novo, Benin</li>
-              <li>+123 456 7890</li>
-              <li>info@coffee.com</li>
+
+          {/* Column 3 */}
+          <div className="col-span-1">
+            <h3 className="font-bold text-base mb-6 tracking-wide">Lorem</h3>
+            <ul className="space-y-4 text-[13px] text-white/80 font-medium">
+              <li><Link href="/" className="hover:text-white transition">Lorem ipsum lorem</Link></li>
+              <li><Link href="/" className="hover:text-white transition">Lorem</Link></li>
+              <li><Link href="/" className="hover:text-white transition">ipsum lorem</Link></li>
+              <li><Link href="/" className="hover:text-white transition">ipsum Lorem</Link></li>
+              <li><Link href="/" className="hover:text-white transition">ipsum Lorem ipsum</Link></li>
             </ul>
           </div>
-          
-          <div>
-            <h3 className="font-bold mb-4 ">MÉDIAS SOCIAUX</h3>
-            <div className="flex space-x-4">
-              <a href="#" className="hover:text-[#f5e6d8] text-white transition">
-                <FontAwesomeIcon icon={faFacebookF} />
-              </a>
-              <a href="#" className="hover:text-[#f5e6d8] text-white transition">
-                <FontAwesomeIcon icon={faTwitter} />
-              </a>
-              <a href="#" className="hover:text-[#f5e6d8] text-white transition">
-                <FontAwesomeIcon icon={faInstagram} />
-              </a>
-              <a href="#" className="hover:text-[#f5e6d8] text-white transition">
-                <FontAwesomeIcon icon={faLinkedinIn} />
-              </a>
-            </div>
+
+          {/* Column 4 */}
+          <div className="col-span-1">
+            <h3 className="font-bold text-base mb-6 tracking-wide">Lorem</h3>
+            <ul className="space-y-4 text-[13px] text-white/80 font-medium">
+              <li><Link href="/" className="hover:text-white transition">Lorem ipsum lorem</Link></li>
+              <li><Link href="/" className="hover:text-white transition">Lorem</Link></li>
+              <li><Link href="/" className="hover:text-white transition">ipsum lorem</Link></li>
+              <li><Link href="/" className="hover:text-white transition">ipsum Lorem</Link></li>
+              <li><Link href="/" className="hover:text-white transition">ipsum Lorem ipsum</Link></li>
+            </ul>
           </div>
+
+          {/* Column 5 */}
+          <div className="col-span-1">
+            <h3 className="font-bold text-base mb-6 tracking-wide">Lorem</h3>
+            <ul className="space-y-4 text-[13px] text-white/80 font-medium">
+              <li><Link href="/" className="hover:text-white transition">Lorem ipsum lorem</Link></li>
+              <li><Link href="/" className="hover:text-white transition">Lorem</Link></li>
+              <li><Link href="/" className="hover:text-white transition">ipsum lorem</Link></li>
+              <li><Link href="/" className="hover:text-white transition">ipsum Lorem</Link></li>
+              <li><Link href="/" className="hover:text-white transition">ipsum Lorem ipsum</Link></li>
+            </ul>
+          </div>
+
         </div>
-        
-        <div className="border-t border-gray-600 mt-8 pt-6 text-center text-sm text-red-dark ">
-          <p>&copy; 2025 ICOLABS. Tous droits réservés.</p>
-        </div>
+
+        {/* Bottom border separator as in mockup */}
+        <div className="mt-16 pt-8 border-t border-white/10 hidden md:block"></div>
       </div>
     </footer>
   );

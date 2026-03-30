@@ -1,6 +1,6 @@
 @import "tailwindcss";
 :root {
-  /* 🌞 Couleurs principales */
+
   --background: #FFFDFC;     /* Blanc légèrement chaud, doux pour les yeux */
   --foreground: #1E1E1E;     /* Noir profond pour un bon contraste */
 
@@ -34,6 +34,11 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-josefin);
+  
+  --color-primary: #6B236F;
+  --color-primary-dark: #521a55;
+  --color-cream: #FFF6E7;
+  --color-cream-dark: #FDEBD0;
 }
 
 

@@ -9,28 +9,30 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="bg-red-dark text-white">
-      <nav className="container mx-auto px-4 py-3 flex justify-between items-center">
-        {/* Logo */}
-        <Link href="/" className="flex items-center">
-          <FontAwesomeIcon icon={faCoffee} className="text-xl mr-2" />
-          <span className="font-bold text-xl">Top Pastry  & <br />
-            <span className="font-bold text-xl text-green-medium"> Salade</span>
-            </span>
+    <header className="absolute top-0 left-0 right-0 z-50 pt-6 px-4">
+      <nav className="container mx-auto bg-primary text-white px-2 py-2 rounded-full flex items-center justify-between shadow-lg max-w-5xl">
+        {/* Logo - Left */}
+        <Link href="/" className="flex items-center w-1/4">
+          <div className="bg-white text-primary px-5 py-2.5 rounded-full text-[15px] font-extrabold tracking-wide ml-2">
+            Lorem
+          </div>
         </Link>
 
-        {/* Menu desktop */}
-        <div className="hidden md:flex space-x-6">
-          <Link href="/" className="hover:text-[#f5e6d8] transition">
-            ACCUEIL
+        {/* Menu desktop - Center */}
+        <div className="hidden md:flex justify-center space-x-12 w-2/4">
+          <Link href="/" className="hover:text-gray-200 transition text-[13px] font-medium tracking-wide">
+            Lorem ipsum
           </Link>
-          <Link href="/produits" className="hover:text-[#f5e6d8] transition">
-            PRODUITS
+          <Link href="/produits" className="hover:text-gray-200 transition text-[13px] font-medium tracking-wide">
+            Lorem ipsum
           </Link>
-          <Link href="/admin" className="hover:text-[#f5e6d8] transition">
-            ADMINISTRATION
+          <Link href="/admin" className="hover:text-gray-200 transition text-[13px] font-medium tracking-wide">
+            Lorem ipsum
           </Link>
         </div>
+
+        {/* Empty space for balance - Right */}
+        <div className="hidden md:block w-1/4"></div>
 
         {/* Icône menu mobile */}
         <button
@@ -44,28 +46,28 @@ export default function Header() {
 
       {/* Menu mobile */}
       {isOpen && (
-        <div className="md:hidden bg-red-light border-t border-[#7a3f0b]">
-          <div className="flex flex-col space-y-3 px-4 py-4">
+        <div className="md:hidden bg-primary-dark border-t border-primary/50">
+          <div className="flex flex-col space-y-4 px-6 py-6 font-medium text-sm">
             <Link
               href="/"
-              className="hover:text-[#f5e6d8] transition"
+              className="hover:text-gray-200 transition"
               onClick={() => setIsOpen(false)}
             >
-              ACCUEIL
+              Lorem ipsum
             </Link>
             <Link
               href="/produits"
-              className="hover:text-[#f5e6d8] transition"
+              className="hover:text-gray-200 transition"
               onClick={() => setIsOpen(false)}
             >
-              PRODUITS
+              Lorem ipsum
             </Link>
             <Link
               href="/admin"
-              className="hover:text-[#f5e6d8] transition"
+              className="hover:text-gray-200 transition"
               onClick={() => setIsOpen(false)}
             >
-              ADMINISTRATION
+              Lorem ipsum
             </Link>
           </div>
         </div>

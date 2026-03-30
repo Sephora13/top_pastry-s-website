@@ -24,7 +24,7 @@ export default function RootLayout({
       <head>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"></link>
       </head>
-      <body className={`${josefin.variable} font-sans antialiased`}>
+      <body suppressHydrationWarning className={`${josefin.variable} font-sans antialiased`}>
         {children}
       </body>
     </html>
