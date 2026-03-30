@@ -7,6 +7,8 @@ import Link from 'next/link';
 import Header from '../components/header';
 import Footer from '../components/footer';
 import { motion, AnimatePresence } from 'framer-motion';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 const TopoBackground = () => (
   <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.2]">
@@ -33,7 +35,8 @@ const TopoBackground = () => (
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState(0);
-  
+  const [showTabTooltip, setShowTabTooltip] = useState(true);
+
   const fadeInUp = {
     initial: { opacity: 0, y: 30 },
     whileInView: { opacity: 1, y: 0 },
@@ -46,7 +49,7 @@ export default function Home() {
       <Header />
       
       {/* Hero Section */}
-      <section className="relative bg-cream flex flex-col pt-24 md:pt-32 overflow-hidden min-h-screen">
+      <section className="relative bg-cream flex flex-col pt-32 lg:pt-40 overflow-hidden">
         <TopoBackground />
 
         <div className="container mx-auto px-6 md:px-12 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center pb-[250px] md:pb-[350px]">
@@ -57,25 +60,30 @@ export default function Home() {
             transition={{ duration: 0.8 }}
             className="text-left w-full order-2 lg:order-1 mt-10 md:mt-0 z-20"
           >
-            <h1 className="text-primary text-6xl md:text-8xl font-black mb-6 leading-tight tracking-tight">
-              Lorem ipsum
+            <h1 className="text-primary text-5xl lg:text-6xl xl:text-7xl font-black mb-6 leading-tight tracking-tight">
+              Savourez chaque instant, sainement et avec élégance
             </h1>
-            <p className="text-[#333] text-base md:text-lg mb-2 font-medium tracking-wide max-w-lg">
-              Lorem ipsum dolor
+            <p className="text-[#333] text-base md:text-lg mb-10 font-medium tracking-wide max-w-lg">
+              Gâteaux d’exception, viennoiseries gourmandes, snacks salés et boissons detox… Nous transformons vos envies en expériences inoubliables.
             </p>
-            <p className="text-[#333] text-base md:text-lg mb-2 font-medium tracking-wide max-w-lg">
-              ipsum lorem ipsum lorem
-            </p>
-            <p className="text-[#333] text-base md:text-lg mb-10 font-bold tracking-wide max-w-lg">
-              ipsum lorem ipsum lorem ipsum
-            </p>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-primary text-white px-10 py-3.5 rounded-full font-bold hover:bg-primary-dark transition text-sm tracking-wider uppercase shadow-xl"
-            >
-              CTA
-            </motion.button>
+            <div className="flex flex-wrap gap-4">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-primary text-white px-8 py-3.5 rounded-full font-bold hover:bg-primary-dark transition text-sm tracking-wider uppercase shadow-xl"
+              >
+                Commander maintenant
+              </motion.button>
+              <Link href="/produits">
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="bg-white text-primary border-2 border-primary px-8 py-3.5 rounded-full font-bold hover:bg-cream transition text-sm tracking-wider uppercase shadow-xl"
+                >
+                  Voir le catalogue
+                </motion.button>
+              </Link>
+            </div>
           </motion.div>
 
           <motion.div
@@ -98,14 +106,8 @@ export default function Home() {
           </motion.div>
         </div>
 
-        {/* Bottom Curve & Categories */}
+        {/* Hero Bottom Orbital Circle */}
         <div className="absolute bottom-0 left-0 right-0 z-20 pointer-events-none">
-          {/* Custom SVG wrapper to perfectly match the mockup bottom curve */}
-          <div className="w-full h-[250px] md:h-[350px] overflow-hidden relative">
-             <svg viewBox="0 0 1440 320" preserveAspectRatio="none" className="absolute bottom-0 w-full h-full text-[#FFF] fill-current drop-shadow-lg">
-               <path d="M0,320 L1440,320 L1440,160 C1120,320 320,320 0,160 Z"></path>
-             </svg>
-          </div>
           <div className="absolute -bottom-[200px] md:-bottom-[450px] left-1/2 transform -translate-x-1/2 pointer-events-auto z-30">
             {/* The outer rotating container */}
             <motion.div 
@@ -134,9 +136,6 @@ export default function Home() {
                   <div 
                     key={i} 
                     className="absolute top-1/2 left-1/2"
-                    // Custom style block to handle responsive translation via clamp/calc isn't easy, 
-                    // so we use CSS custom properties or simple static inline styles for md+ overrides if possible.
-                    // Instead of complex CSS, we apply a single wrapper that translates, then a motion block that counter-rotates.
                   >
                     {/* Desktop pos */}
                     <div 
@@ -149,7 +148,9 @@ export default function Home() {
                         className="flex flex-col items-center"
                       >
                         <div className="w-[120px] h-[120px] bg-white rounded-full shadow-lg flex items-center justify-center"></div>
-                        <span className="text-lg font-bold text-[#63256A] mt-4 tracking-wide w-max">Lorem ipsum</span>
+                        <span className="text-lg font-bold text-[#63256A] mt-4 tracking-wide w-max">
+                          {['Gâteaux', 'Viennoiseries', 'Snacks salés', 'Boissons detox'][i % 4]}
+                        </span>
                       </motion.div>
                     </div>
 
@@ -164,7 +165,9 @@ export default function Home() {
                         className="flex flex-col items-center"
                       >
                         <div className="w-[60px] h-[60px] bg-white rounded-full shadow-md flex items-center justify-center"></div>
-                        <span className="text-xs font-bold text-[#63256A] mt-2 tracking-wide w-max">Lorem ipsum</span>
+                        <span className="text-xs font-bold text-[#63256A] mt-2 tracking-wide w-max">
+                          {['Gâteaux', 'Viennoiseries', 'Snacks salés', 'Boissons detox'][i % 4]}
+                        </span>
                       </motion.div>
                     </div>
                   </div>
@@ -182,12 +185,36 @@ export default function Home() {
             {...fadeInUp}
             className="text-3xl md:text-4xl font-black mb-6 text-center text-primary tracking-tight"
           >
-            Lorem ipsum
+            Nos Créations
           </motion.h2>
 
           {/* Navigation Tabs */}
-          <div className="flex justify-center flex-wrap gap-8 md:gap-14 mb-16 border-b border-gray-100 max-w-2xl mx-auto">
-            {['Lorem ipsum', 'Lorem ipsum', 'Lorem ipsum'].map((tab, idx) => (
+          <div className="relative flex justify-center flex-wrap gap-6 md:gap-10 mb-16 border-b border-gray-100 max-w-4xl mx-auto">
+            
+            {/* Tooltip to indicate tabs are clickable */}
+            <AnimatePresence>
+              {showTabTooltip && (
+                <motion.div
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.2 } }}
+                  className="absolute -top-14 bg-primary text-white text-xs md:text-sm font-bold px-4 py-2.5 rounded-xl shadow-xl flex items-center gap-3 z-10"
+                >
+                  <span className="tracking-wide">Vous pouvez cliquer pour voir les autres catégories</span>
+                  <button 
+                    onClick={() => setShowTabTooltip(false)}
+                    className="w-5 h-5 rounded-full bg-white/20 hover:bg-white/40 flex items-center justify-center transition-colors cursor-pointer shrink-0"
+                    title="Fermer l'info bulle"
+                  >
+                    <FontAwesomeIcon icon={faTimes} className="w-3 h-3 text-white" />
+                  </button>
+                  {/* Arrow down pointer */}
+                  <div className="absolute -bottom-[7px] left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-[8px] border-r-[8px] border-t-[8px] border-l-transparent border-r-transparent border-t-primary border-l-8 border-r-8 border-t-8"></div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+            {['Gâteaux personnalisés', 'Viennoiseries & snacks', 'Salades fraîches', 'Jus detox & yaourts'].map((tab, idx) => (
               <button
                 key={idx}
                 onClick={() => setActiveTab(idx)}
@@ -208,44 +235,71 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-14 max-w-6xl mx-auto">
-            {[
-              { name: 'Lorem ipsum', img: '/image/gateau2.jpg', desc: 'Lorem ipsum dolor sit amet consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.', price: '25000 FCFA' },
-              { name: 'Lorem ipsum', img: '/image/gateau3.jpg', desc: 'Lorem ipsum dolor sit amet consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.', price: '25000 FCFA' },
-              { name: 'Lorem ipsum', img: '/image/gateau4.jpg', desc: 'Lorem ipsum dolor sit amet consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.', price: '25000 FCFA' }
-            ].map((item, index) => (
-              <AnimatePresence key={index}>
-                <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: false, amount: 0.1 }}
-                  transition={{ delay: index * 0.15 }}
-                  className="flex flex-col items-center"
-                >
-                  <motion.div 
-                    whileHover={{ scale: 1.05 }}
-                    className="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden shadow-2xl mb-8 z-10 relative cursor-pointer"
+            {(() => {
+              const allProducts = [
+                // Gâteaux
+                [
+                  { name: 'Gâteau d’exception', img: '/image/gateau1.jpg', desc: 'Une texture onctueuse et une décoration minutieuse...', price: '25000 FCFA' },
+                  { name: 'Fraisier Royal', img: '/image/gateau2.jpg', desc: 'Des fraises fraîches et une crème mousseline...', price: '30000 FCFA' },
+                  { name: 'Choco Intense', img: '/image/gateau3.jpg', desc: 'Pour les puristes du chocolat, une création dense...', price: '28000 FCFA' }
+                ],
+                // Viennoiseries & snacks
+                [
+                  { name: 'Croissants', img: '/image/croissants.jpg', desc: 'Pur beurre d\'Isigny, croustillants à l\'extérieur...', price: '1500 FCFA' },
+                  { name: 'Friands Viande', img: '/image/friands.jpg', desc: 'Un feuilletage parfait et une viande parfumée...', price: '2000 FCFA' },
+                  { name: 'Mini Burgers', img: '/image/mini_burger1.jpg', desc: 'Mini burgers moelleux, parfaits pour vos événements...', price: '3000 FCFA' }
+                ],
+                // Salades
+                [
+                  { name: 'Salade Fraîcheur', img: '/image/salade1.jpg', desc: 'Tomates, mozzarella, basilic et huile d\'olive...', price: '4500 FCFA' },
+                  { name: 'Salade Gourmande', img: '/image/salade2.jpg', desc: 'Légumes de saison, quinoa et vinaigrette maison...', price: '5000 FCFA' },
+                  { name: 'Bowl Énergétique', img: '/image/salade3.jpg', desc: 'Avocat, saumon, riz et mangue fraiche...', price: '6000 FCFA' }
+                ],
+                // Jus detox & yaourts
+                [
+                  { name: 'Jus Detox Vert', img: '/image/jus1.jpg', desc: 'Pomme, céleri, concombre et citron...', price: '2500 FCFA' },
+                  { name: 'Boost Agrumes', img: '/image/jus2.jpg', desc: 'Orange, carotte, gingembre pour l\'énergie...', price: '2500 FCFA' },
+                  { name: 'Smoothie Douceur', img: '/image/jus3.jpg', desc: 'Banane, fraise, lait d\'amande...', price: '3000 FCFA' }
+                ]
+              ];
+
+              const currentProducts = allProducts[activeTab] || allProducts[0];
+
+              return currentProducts.map((item, index) => (
+                <AnimatePresence key={`${activeTab}-${index}`}>
+                  <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -30 }}
+                    transition={{ delay: index * 0.1 }}
+                    className="flex flex-col items-center"
                   >
-                    <Image src={item.img} alt={item.name} fill className="object-cover" />
+                    <motion.div 
+                      whileHover={{ scale: 1.05 }}
+                      className="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden shadow-2xl mb-8 z-10 relative cursor-pointer"
+                    >
+                      <Image src={item.img} alt={item.name} fill className="object-cover" />
+                    </motion.div>
+                    <h3 className="font-extrabold text-[#111] text-2xl mb-3 text-center">{item.name}</h3>
+                    <p className="text-gray-500 text-xs md:text-sm text-center px-4 mb-8 leading-relaxed max-w-sm">
+                      {item.desc}
+                    </p>
+                    <div className="w-full flex items-center justify-between px-2 md:px-6 mb-4 mt-auto">
+                      <span className="text-primary font-black text-xl tracking-wide">{item.price}</span>
+                      <Link href={`/produit/${index + 1}`}>
+                        <motion.button 
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                          className="bg-primary text-white px-8 py-3 rounded-xl text-sm font-bold shadow-md hover:bg-primary-dark transition uppercase cursor-pointer"
+                        >
+                          Commander
+                        </motion.button>
+                      </Link>
+                    </div>
                   </motion.div>
-                  <h3 className="font-extrabold text-[#111] text-2xl mb-3">{item.name}</h3>
-                  <p className="text-gray-500 text-xs md:text-sm text-center px-4 mb-8 leading-relaxed max-w-sm">
-                    {item.desc}
-                  </p>
-                  <div className="w-full flex items-center justify-between px-2 md:px-6 mb-4">
-                    <span className="text-primary font-black text-xl tracking-wide">{item.price}</span>
-                    <Link href={`/produit/${index + 1}`}>
-                      <motion.button 
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        className="bg-primary text-white px-8 py-3 rounded-xl text-sm font-bold shadow-md hover:bg-primary-dark transition uppercase cursor-pointer"
-                      >
-                        CTA
-                      </motion.button>
-                    </Link>
-                  </div>
-                </motion.div>
-              </AnimatePresence>
-            ))}
+                </AnimatePresence>
+              ));
+            })()}
           </div>
         </div>
       </section>
@@ -293,22 +347,52 @@ export default function Home() {
               {...fadeInUp}
               className="text-left w-full max-w-lg order-1 md:order-2 z-30"
             >
-              <h2 className="text-4xl md:text-6xl lg:text-7xl font-black mb-8 text-primary tracking-tight">Lorem ipsum</h2>
+              <h2 className="text-3xl md:text-5xl lg:text-6xl font-black mb-8 text-primary tracking-tight leading-tight">Notre passion : allier plaisir et bien-être</h2>
+              <p className="text-[#333] mb-4 text-base md:text-lg font-medium leading-relaxed">
+                Chez nous, chaque création est pensée pour offrir bien plus qu’un simple goût : une expérience. Nous combinons gourmandise, qualité et équilibre pour répondre à toutes vos envies — des événements les plus précieux aux petits plaisirs du quotidien.
+              </p>
               <p className="text-[#333] mb-6 text-base md:text-lg font-medium leading-relaxed">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
+                Nos produits sont préparés avec soin, à partir d’ingrédients sélectionnés, pour vous garantir fraîcheur, saveur et satisfaction. Parce que bien manger, c’est aussi prendre soin de soi.
               </p>
-              <p className="text-[#333] mb-12 text-base md:text-lg font-medium leading-relaxed">
-                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat.
-              </p>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-primary text-white px-10 py-3.5 rounded-full font-bold hover:bg-primary-dark transition tracking-wider uppercase shadow-xl"
-              >
-                CTA
-              </motion.button>
+              <ul className="list-disc pl-5 mb-10 text-[#63256A] font-bold space-y-2">
+                <li>Gâteaux personnalisés</li>
+                <li>Viennoiseries & snacks salés</li>
+                <li>Salades fraîches</li>
+                <li>Jus detox & yaourts</li>
+              </ul>
             </motion.div>
           </div>
+        </div>
+      </section>
+
+      {/* Events CTA Section */}
+      <section className="py-16 md:py-20 bg-[#63256A] text-white">
+        <div className="container mx-auto px-6 md:px-12 text-center">
+          <motion.h2 
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="text-3xl md:text-5xl font-black mb-6 tracking-tight"
+          >
+            Disponible pour nos événements
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-lg md:text-xl font-medium mb-10 max-w-2xl mx-auto opacity-90"
+          >
+            Rendez vos célébrations mémorables avec nos tables élégamment dressées et nos créations sur-mesure pour tous types d'événements.
+          </motion.p>
+          <Link href="/galerie">
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="bg-white text-[#63256A] px-10 py-4 rounded-full font-bold hover:bg-cream transition text-sm tracking-wider uppercase shadow-xl"
+            >
+              Pourquoi nous choisir (Galerie)
+            </motion.button>
+          </Link>
         </div>
       </section>
 
@@ -323,37 +407,74 @@ export default function Home() {
           </motion.h2>
 
           <div className="overflow-hidden space-y-8 py-6 max-w-screen-2xl w-full">
-            {/* Ligne 1 : droite vers gauche */}
-            <motion.div
-              animate={{ x: ["0%", "-50%"] }}
-              transition={{ repeat: Infinity, duration: 25, ease: 'linear' }}
-              className="flex gap-6 w-max"
-            >
-              {[1, 2, 3, 4, 1, 2, 3, 4].map((i, idx) => (
-                <motion.div
-                  whileHover={{ scale: 1.02 }}
-                  key={idx}
-                  className="w-[280px] md:w-[350px] aspect-2/1 bg-white rounded-xl border-[1.5px] border-gray-100 shadow-sm transition hover:shadow-lg flex-shrink-0 cursor-pointer"
-                >
-                </motion.div>
-              ))}
-            </motion.div>
+            {(() => {
+              const reviewsRow1 = [
+                { id: 1, name: "Marie S.", rating: 5, text: "Les gâteaux sont justes incroyables ! Un design magnifique et un goût exquis. Je recommande vivement pour tous vos anniversaires." },
+                { id: 2, name: "Pauline A.", rating: 5, text: "J'ai commandé des viennoiseries pour un brunch d'entreprise, tout le monde a adoré. Les croissants sont bien beurrés comme en France !" },
+                { id: 3, name: "David T.", rating: 4, text: "Service impeccable, les jus detox sont devenus mon rituel de la semaine. Très frais et savoureux." },
+                { id: 4, name: "Karelle O.", rating: 5, text: "Leur prestation pour notre mariage était parfaite : décoration des tables, repas, et le gâteau de noces... Inoubliable !" }
+              ];
+              const reviewsRow2 = [
+                { id: 5, name: "Jean-Marc L.", rating: 5, text: "Les salades sont super bien garnies et la vinaigrette est divine. Parfait pour la pause déjeuner." },
+                { id: 6, name: "Estelle D.", rating: 5, text: "Je suis bluffée par la qualité et la présentation de chaque produit. Le fraisier est à tomber par terre." },
+                { id: 7, name: "Cédric", rating: 4, text: "Très bonne pâtisserie, l'équipe est à l'écoute et souriante. Petit coup de coeur pour les mini-burgers." },
+                { id: 8, name: "Sylvia M.", rating: 5, text: "Gouts & Couleurs a sublimé notre séminaire avec une table dressée au top et des snacks salés délicieux !" }
+              ];
 
-            {/* Ligne 2 : gauche vers droite */}
-            <motion.div
-              animate={{ x: ["-50%", "0%"] }}
-              transition={{ repeat: Infinity, duration: 25, ease: 'linear' }}
-              className="flex gap-6 w-max"
-            >
-              {[5, 6, 7, 8, 5, 6, 7, 8].map((i, idx) => (
-                <motion.div
-                  whileHover={{ scale: 1.02 }}
-                  key={idx}
-                  className="w-[280px] md:w-[350px] aspect-2/1 bg-white rounded-xl border-[1.5px] border-gray-100 shadow-sm transition hover:shadow-lg flex-shrink-0 cursor-pointer"
-                >
-                </motion.div>
-              ))}
-            </motion.div>
+              return (
+                <>
+                  {/* Ligne 1 : droite vers gauche */}
+                  <motion.div
+                    animate={{ x: ["0%", "-50%"] }}
+                    transition={{ repeat: Infinity, duration: 30, ease: 'linear' }}
+                    className="flex gap-6 w-max"
+                  >
+                    {[...reviewsRow1, ...reviewsRow1].map((review, idx) => (
+                      <motion.div
+                        whileHover={{ scale: 1.02 }}
+                        key={`row1-${idx}`}
+                        className="w-[300px] md:w-[380px] h-[160px] md:h-[180px] bg-white rounded-2xl border border-gray-100 shadow-sm transition hover:shadow-lg flex-shrink-0 flex flex-col justify-between p-6 cursor-pointer"
+                      >
+                        <p className="text-gray-600 text-sm md:text-base italic line-clamp-3">"{review.text}"</p>
+                        <div className="flex items-center justify-between mt-4">
+                          <span className="font-bold text-[#333]">{review.name}</span>
+                          <div className="flex gap-1 text-yellow-400 text-sm">
+                            {[...Array(5)].map((_, i) => (
+                              <i key={i} className={`fas fa-star ${i < review.rating ? '' : 'text-gray-200'}`}></i>
+                            ))}
+                          </div>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </motion.div>
+
+                  {/* Ligne 2 : gauche vers droite */}
+                  <motion.div
+                    animate={{ x: ["-50%", "0%"] }}
+                    transition={{ repeat: Infinity, duration: 35, ease: 'linear' }}
+                    className="flex gap-6 w-max"
+                  >
+                    {[...reviewsRow2, ...reviewsRow2].map((review, idx) => (
+                      <motion.div
+                        whileHover={{ scale: 1.02 }}
+                        key={`row2-${idx}`}
+                        className="w-[300px] md:w-[380px] h-[160px] md:h-[180px] bg-white rounded-2xl border border-gray-100 shadow-sm transition hover:shadow-lg flex-shrink-0 flex flex-col justify-between p-6 cursor-pointer"
+                      >
+                        <p className="text-gray-600 text-sm md:text-base italic line-clamp-3">"{review.text}"</p>
+                        <div className="flex items-center justify-between mt-4">
+                          <span className="font-bold text-[#333]">{review.name}</span>
+                          <div className="flex gap-1 text-yellow-400 text-sm">
+                            {[...Array(5)].map((_, i) => (
+                              <i key={i} className={`fas fa-star ${i < review.rating ? '' : 'text-gray-200'}`}></i>
+                            ))}
+                          </div>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </motion.div>
+                </>
+              );
+            })()}
           </div>
         </div>
       </section>
@@ -361,15 +482,17 @@ export default function Home() {
       {/* Map Section */}
       <section className="bg-primary text-white">
         <div className="container mx-auto px-6 md:px-12 py-16 md:py-24">
-          <h2 className="text-3xl md:text-4xl font-extrabold mb-12 lg:mb-16 text-center tracking-tight">Lorem ipsum</h2>
+          <h2 className="text-3xl md:text-4xl font-extrabold mb-12 lg:mb-16 text-center tracking-tight">Où nous trouver</h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 items-center max-w-6xl mx-auto">
             <div className="text-left font-medium text-[13px] md:text-sm">
-              <p className="mb-6 leading-relaxed opacity-95">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+              <p className="mb-6 leading-relaxed opacity-95 text-lg">
+                Venez découvrir notre univers de gourmandises et de bien-être directement en boutique. 
+                Nous vous accueillons dans un cadre chaleureux et élégant, pensé pour votre détente.
               </p>
-              <p className="opacity-95 leading-relaxed">
-                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.
+              <p className="opacity-95 leading-relaxed text-lg">
+                Que vous soyez de passage pour une pause café, un snack rapide ou pour récupérer une commande personnalisée, 
+                notre équipe est ravie de vous servir avec le sourire.
               </p>
             </div>
             <div className="h-64 md:h-[320px] rounded-[20px] overflow-hidden shadow-2xl relative bg-white/10 ring-4 ring-white/10">
