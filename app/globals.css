@@ -33,7 +33,8 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-josefin);
+  --font-sans: Sora, Helvetica, sans-serif;
+  --font-title: var(--font-titan);
   
   --color-primary: #6B236F;
   --color-primary-dark: #521a55;
@@ -47,6 +48,14 @@ body {
   background: var(--background);
   color: var(--foreground);
 }
+
+h1, h2, h3, h4, h5, h6, .font-title, .important-message {
+  font-family: var(--font-titan), var(--font-sora), sans-serif;
+  font-weight: 400 !important; /* Titan One only supports weight 400, prevent faux-bolding */
+}
+
+
+
 
 .bg-red-dark{
   background-color: var(--red-dark);

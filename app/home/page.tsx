@@ -1,14 +1,15 @@
 // src/app/page.tsx
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import Header from '../components/header';
 import Footer from '../components/footer';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faTimes, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+import CategoryFAB from '../components/CategoryFAB';
 
 const TopoBackground = () => (
   <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.2]">
@@ -22,7 +23,7 @@ const TopoBackground = () => (
           <path d="M 0 250 Q 100 200 200 250 T 400 250" fill="none" stroke="#63256A" strokeWidth="0.5" />
           <path d="M 0 300 Q 100 250 200 300 T 400 300" fill="none" stroke="#63256A" strokeWidth="0.5" />
           <path d="M 0 350 Q 100 300 200 350 T 400 350" fill="none" stroke="#63256A" strokeWidth="0.5" />
-          
+
           <path d="M 0 80 Q 50 130 150 80 T 400 80" fill="none" stroke="#63256A" strokeWidth="0.5" opacity="0.5" />
           <path d="M 0 180 Q 50 230 150 180 T 400 180" fill="none" stroke="#63256A" strokeWidth="0.5" opacity="0.5" />
           <path d="M 0 280 Q 50 330 150 280 T 400 280" fill="none" stroke="#63256A" strokeWidth="0.5" opacity="0.5" />
@@ -36,6 +37,8 @@ const TopoBackground = () => (
 export default function Home() {
   const [activeTab, setActiveTab] = useState(0);
   const [showTabTooltip, setShowTabTooltip] = useState(true);
+  const [isCreationsVisible, setIsCreationsVisible] = useState(false);
+  const creationsRef = useRef<HTMLElement>(null);
 
   const fadeInUp = {
     initial: { opacity: 0, y: 30 },
@@ -44,10 +47,36 @@ export default function Home() {
     transition: { duration: 0.6 }
   };
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsCreationsVisible(entry.isIntersecting);
+      },
+      { threshold: 0.1, rootMargin: "-100px 0px" }
+    );
+
+    if (creationsRef.current) {
+      observer.observe(creationsRef.current);
+    }
+
+    return () => {
+      if (creationsRef.current) {
+        observer.unobserve(creationsRef.current);
+      }
+    };
+  }, []);
+
+  const homeCategories = [
+    { id: '0', label: 'Gâteaux personnalisés' },
+    { id: '1', label: 'Viennoiseries & snacks' },
+    { id: '2', label: 'Salades fraîches' },
+    { id: '3', label: 'Jus detox & yaourts' }
+  ];
+
   return (
     <>
       <Header />
-      
+
       {/* Hero Section */}
       <section className="relative bg-cream flex flex-col pt-32 lg:pt-40 overflow-hidden">
         <TopoBackground />
@@ -60,7 +89,7 @@ export default function Home() {
             transition={{ duration: 0.8 }}
             className="text-left w-full order-2 lg:order-1 mt-10 md:mt-0 z-20"
           >
-            <h1 className="text-primary text-5xl lg:text-6xl xl:text-7xl font-black mb-6 leading-tight tracking-tight">
+            <h1 className="text-primary text-5xl lg:text-6xl xl:text-7xl font-title font-black mb-6 leading-tight tracking-tight">
               Savourez chaque instant, sainement et avec élégance
             </h1>
             <p className="text-[#333] text-base md:text-lg mb-10 font-medium tracking-wide max-w-lg">
@@ -70,7 +99,7 @@ export default function Home() {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-primary text-white px-8 py-3.5 rounded-full font-bold hover:bg-primary-dark transition text-sm tracking-wider uppercase shadow-xl"
+                className="bg-primary text-white px-8 py-3.5 rounded-full font-title font-bold hover:bg-primary-dark transition text-sm tracking-wider uppercase shadow-xl"
               >
                 Commander maintenant
               </motion.button>
@@ -78,7 +107,7 @@ export default function Home() {
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="bg-white text-primary border-2 border-primary px-8 py-3.5 rounded-full font-bold hover:bg-cream transition text-sm tracking-wider uppercase shadow-xl"
+                  className="bg-white text-primary border-2 border-primary px-8 py-3.5 rounded-full font-title font-bold hover:bg-cream transition text-sm tracking-wider uppercase shadow-xl"
                 >
                   Voir le catalogue
                 </motion.button>
@@ -108,12 +137,12 @@ export default function Home() {
 
         {/* Hero Bottom Orbital Circle */}
         <div className="absolute bottom-0 left-0 right-0 z-20 pointer-events-none">
-          <div className="absolute -bottom-[200px] md:-bottom-[450px] left-1/2 transform -translate-x-1/2 pointer-events-auto z-30">
+          <div className="absolute -bottom-[200px] md:-bottom-[600px] left-1/2 transform -translate-x-1/2 pointer-events-auto z-30">
             {/* The outer rotating container */}
-            <motion.div 
+            <motion.div
               animate={{ rotate: 360 }}
               transition={{ repeat: Infinity, duration: 40, ease: 'linear' }}
-              className="relative w-[400px] h-[400px] md:w-[900px] md:h-[900px] rounded-full flex items-center justify-center bg-[#FDE2C3]" // Matching the filled background color from image
+              className="relative w-[400px] h-[400px] md:w-[900px] md:h-[950px] rounded-full flex items-center justify-center bg-[#FDE2C3]" // Matching the filled background color from image
             >
               {/* Inner concentric circle matching the reference image */}
               <div className="absolute w-[200px] h-[200px] md:w-[450px] md:h-[450px] bg-[#FFF6E7] rounded-full opacity-60"></div>
@@ -123,49 +152,63 @@ export default function Home() {
                 const angle = i * 45; // in degrees
                 const rad = (angle * Math.PI) / 180;
                 // Mobile radius ~ 150, Desktop radius ~ 350
-                const radiusMobile = 160;
+                const radiusMobile = 140;
                 const radiusDesktop = 360;
-                
+
                 const xMobile = radiusMobile * Math.sin(rad);
                 const yMobile = -radiusMobile * Math.cos(rad);
-                
+
                 const xDesktop = radiusDesktop * Math.sin(rad);
                 const yDesktop = -radiusDesktop * Math.cos(rad);
 
                 return (
-                  <div 
-                    key={i} 
+                  <div
+                    key={i}
                     className="absolute top-1/2 left-1/2"
                   >
                     {/* Desktop pos */}
-                    <div 
-                      className="hidden md:block absolute" 
+                    <div
+                      className="hidden md:block absolute"
                       style={{ transform: `translate(-50%, -50%) translate(${xDesktop}px, ${yDesktop}px)` }}
                     >
-                      <motion.div 
+                      <motion.div
                         animate={{ rotate: -360 }}
                         transition={{ repeat: Infinity, duration: 40, ease: 'linear' }}
                         className="flex flex-col items-center"
                       >
-                        <div className="w-[120px] h-[120px] bg-white rounded-full shadow-lg flex items-center justify-center"></div>
-                        <span className="text-lg font-bold text-[#63256A] mt-4 tracking-wide w-max">
+                        <div className="w-[120px] h-[120px] bg-white rounded-full shadow-lg flex items-center justify-center overflow-hidden relative">
+                          <Image
+                            src={['/image/gateau1.jpg', '/image/croissants.jpg', '/image/mini_burger1.jpg', '/image/jus1.jpg'][i % 4]}
+                            alt="Produit"
+                            fill
+                            className="object-cover"
+                          />
+                        </div>
+                        <span className="text-lg font-title font-bold text-[#63256A] mt-4 tracking-wide w-max">
                           {['Gâteaux', 'Viennoiseries', 'Snacks salés', 'Boissons detox'][i % 4]}
                         </span>
                       </motion.div>
                     </div>
 
                     {/* Mobile pos */}
-                    <div 
-                      className="block md:hidden absolute" 
+                    <div
+                      className="block md:hidden absolute"
                       style={{ transform: `translate(-50%, -50%) translate(${xMobile}px, ${yMobile}px)` }}
                     >
-                      <motion.div 
+                      <motion.div
                         animate={{ rotate: -360 }}
                         transition={{ repeat: Infinity, duration: 40, ease: 'linear' }}
                         className="flex flex-col items-center"
                       >
-                        <div className="w-[60px] h-[60px] bg-white rounded-full shadow-md flex items-center justify-center"></div>
-                        <span className="text-xs font-bold text-[#63256A] mt-2 tracking-wide w-max">
+                        <div className="w-[60px] h-[60px] bg-white rounded-full shadow-md flex items-center justify-center overflow-hidden relative">
+                          <Image
+                            src={['/image/gateau1.jpg', '/image/croissants.jpg', '/image/mini_burger1.jpg', '/image/jus1.jpg'][i % 4]}
+                            alt="Produit"
+                            fill
+                            className="object-cover"
+                          />
+                        </div>
+                        <span className="text-xs font-title font-bold text-[#63256A] mt-2 tracking-wide w-max">
                           {['Gâteaux', 'Viennoiseries', 'Snacks salés', 'Boissons detox'][i % 4]}
                         </span>
                       </motion.div>
@@ -179,29 +222,19 @@ export default function Home() {
       </section>
 
       {/* Products Section */}
-      <section className="pt-24 pb-16 md:pt-32 md:pb-20 bg-white">
+      <section ref={creationsRef} className="pt-24 pb-16 md:pt-32 md:pb-20 bg-white min-h-[800px]">
         <div className="container mx-auto px-6 md:px-12">
-          <motion.h2
-            {...fadeInUp}
-            className="text-3xl md:text-4xl font-black mb-6 text-center text-primary tracking-tight"
-          >
-            Nos Créations
-          </motion.h2>
-
-          {/* Navigation Tabs */}
-          <div className="relative flex justify-center flex-wrap gap-6 md:gap-10 mb-16 border-b border-gray-100 max-w-4xl mx-auto">
-            
-            {/* Tooltip to indicate tabs are clickable */}
+          <div className="text-center mb-6 relative">
             <AnimatePresence>
               {showTabTooltip && (
                 <motion.div
                   initial={{ opacity: 0, y: 15 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.2 } }}
-                  className="absolute -top-14 bg-primary text-white text-xs md:text-sm font-bold px-4 py-2.5 rounded-xl shadow-xl flex items-center gap-3 z-10"
+                  animate={{ opacity: 1, y: -10 }}
+                  exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.5 } }}
+                  className="inline-flex bg-primary text-white text-xs md:text-sm font-bold px-6 py-3 rounded-full shadow-xl items-center gap-3 relative z-20"
                 >
-                  <span className="tracking-wide">Vous pouvez cliquer pour voir les autres catégories</span>
-                  <button 
+                  <span className="font-title tracking-wide">Vous pouvez cliquer pour voir les produits de la catégorie</span>
+                  <button
                     onClick={() => setShowTabTooltip(false)}
                     className="w-5 h-5 rounded-full bg-white/20 hover:bg-white/40 flex items-center justify-center transition-colors cursor-pointer shrink-0"
                     title="Fermer l'info bulle"
@@ -213,16 +246,30 @@ export default function Home() {
                 </motion.div>
               )}
             </AnimatePresence>
+            <motion.h2
+              {...fadeInUp}
+              className="text-3xl md:text-4xl font-title font-black text-primary tracking-tight"
+            >
+              Nos Créations
+            </motion.h2>
+          </div>
+
+          {/* Navigation Tabs */}
+          <div className="relative flex justify-center flex-wrap gap-6 md:gap-10 mb-16 border-b border-gray-100 max-w-4xl mx-auto">
 
             {['Gâteaux personnalisés', 'Viennoiseries & snacks', 'Salades fraîches', 'Jus detox & yaourts'].map((tab, idx) => (
-              <button
+              <div
                 key={idx}
+                role="button"
+                tabIndex={0}
                 onClick={() => setActiveTab(idx)}
-                className={`pb-3 text-sm font-bold tracking-wide relative transition-colors ${
-                  activeTab === idx ? 'text-primary' : 'text-gray-400 hover:text-gray-700'
-                }`}
+                onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setActiveTab(idx); }}
+                className={`pb-3 text-sm font-title font-bold tracking-wide relative cursor-pointer outline-none transition-colors ${activeTab === idx ? 'text-primary' : 'text-gray-400 hover:text-gray-700'
+                  }`}
               >
                 {tab}
+
+                {/* Active Underline */}
                 {activeTab === idx && (
                   <motion.div
                     layoutId="activeTabProduct"
@@ -230,7 +277,7 @@ export default function Home() {
                     transition={{ type: "spring", stiffness: 400, damping: 35 }}
                   />
                 )}
-              </button>
+              </div>
             ))}
           </div>
 
@@ -268,29 +315,29 @@ export default function Home() {
               return currentProducts.map((item, index) => (
                 <AnimatePresence key={`${activeTab}-${index}`}>
                   <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -30 }}
-                    transition={{ delay: index * 0.1 }}
+                    initial={{ opacity: 0, x: 50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -50 }}
+                    transition={{ delay: index * 0.1, duration: 0.5, ease: "easeOut" }}
                     className="flex flex-col items-center"
                   >
-                    <motion.div 
+                    <motion.div
                       whileHover={{ scale: 1.05 }}
                       className="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden shadow-2xl mb-8 z-10 relative cursor-pointer"
                     >
                       <Image src={item.img} alt={item.name} fill className="object-cover" />
                     </motion.div>
-                    <h3 className="font-extrabold text-[#111] text-2xl mb-3 text-center">{item.name}</h3>
+                    <h3 className="font-title font-extrabold text-[#111] text-2xl mb-3 text-center">{item.name}</h3>
                     <p className="text-gray-500 text-xs md:text-sm text-center px-4 mb-8 leading-relaxed max-w-sm">
                       {item.desc}
                     </p>
                     <div className="w-full flex items-center justify-between px-2 md:px-6 mb-4 mt-auto">
-                      <span className="text-primary font-black text-xl tracking-wide">{item.price}</span>
+                      <span className="text-primary font-title font-black text-xl tracking-wide">{item.price}</span>
                       <Link href={`/produit/${index + 1}`}>
-                        <motion.button 
+                        <motion.button
                           whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.95 }}
-                          className="bg-primary text-white px-8 py-3 rounded-xl text-sm font-bold shadow-md hover:bg-primary-dark transition uppercase cursor-pointer"
+                          className="bg-primary text-white px-8 py-3 rounded-xl text-sm font-title font-bold shadow-md hover:bg-primary-dark transition uppercase cursor-pointer"
                         >
                           Commander
                         </motion.button>
@@ -318,7 +365,7 @@ export default function Home() {
             >
               {/* Central cream dark circle holding the juice item background */}
               <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[380px] h-[380px] md:w-[600px] md:h-[600px] rounded-full bg-cream-dark -z-10 shadow-inner"></div>
-              
+
               <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] md:w-[500px] md:h-[500px] rounded-full overflow-hidden shadow-2xl z-20">
                 <Image
                   src="/image/hero_juice.png"
@@ -329,7 +376,7 @@ export default function Home() {
               </div>
 
               {/* Smaller floating salad circle overlay shifted down and to the RIGHT with rotation */}
-              <motion.div 
+              <motion.div
                 animate={{ rotate: 360 }}
                 transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
                 className="absolute -bottom-[20px] -right-[10px] md:-bottom-[40px] md:-right-[20px] lg:bottom-[0px] lg:-right-[40px] w-[150px] h-[150px] md:w-[250px] md:h-[250px] rounded-full overflow-hidden shadow-[0_20px_40px_rgba(0,0,0,0.3)] z-30 border-8 border-white bg-white"
@@ -347,19 +394,13 @@ export default function Home() {
               {...fadeInUp}
               className="text-left w-full max-w-lg order-1 md:order-2 z-30"
             >
-              <h2 className="text-3xl md:text-5xl lg:text-6xl font-black mb-8 text-primary tracking-tight leading-tight">Notre passion : allier plaisir et bien-être</h2>
+              <h2 className="text-3xl md:text-5xl lg:text-6xl font-title font-black mb-8 text-primary tracking-tight leading-tight">Notre passion : allier plaisir et bien-être</h2>
               <p className="text-[#333] mb-4 text-base md:text-lg font-medium leading-relaxed">
                 Chez nous, chaque création est pensée pour offrir bien plus qu’un simple goût : une expérience. Nous combinons gourmandise, qualité et équilibre pour répondre à toutes vos envies — des événements les plus précieux aux petits plaisirs du quotidien.
               </p>
               <p className="text-[#333] mb-6 text-base md:text-lg font-medium leading-relaxed">
                 Nos produits sont préparés avec soin, à partir d’ingrédients sélectionnés, pour vous garantir fraîcheur, saveur et satisfaction. Parce que bien manger, c’est aussi prendre soin de soi.
               </p>
-              <ul className="list-disc pl-5 mb-10 text-[#63256A] font-bold space-y-2">
-                <li>Gâteaux personnalisés</li>
-                <li>Viennoiseries & snacks salés</li>
-                <li>Salades fraîches</li>
-                <li>Jus detox & yaourts</li>
-              </ul>
             </motion.div>
           </div>
         </div>
@@ -368,11 +409,11 @@ export default function Home() {
       {/* Events CTA Section */}
       <section className="py-16 md:py-20 bg-[#63256A] text-white">
         <div className="container mx-auto px-6 md:px-12 text-center">
-          <motion.h2 
+          <motion.h2
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="text-3xl md:text-5xl font-black mb-6 tracking-tight"
+            className="text-3xl md:text-5xl font-title font-black mb-6 tracking-tight"
           >
             Disponible pour nos événements
           </motion.h2>
@@ -388,7 +429,7 @@ export default function Home() {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="bg-white text-[#63256A] px-10 py-4 rounded-full font-bold hover:bg-cream transition text-sm tracking-wider uppercase shadow-xl"
+              className="bg-white text-[#63256A] px-10 py-4 rounded-full font-title font-bold hover:bg-cream transition text-sm tracking-wider uppercase shadow-xl"
             >
               Pourquoi nous choisir (Galerie)
             </motion.button>
@@ -401,7 +442,7 @@ export default function Home() {
         <div className="container mx-auto px-6 md:px-12">
           <motion.h2
             {...fadeInUp}
-            className="text-2xl md:text-3xl font-black mb-16 text-center text-primary tracking-tight"
+            className="text-2xl md:text-3xl font-title font-black mb-16 text-center text-primary tracking-tight"
           >
             Nos clients satisfaits
           </motion.h2>
@@ -482,16 +523,16 @@ export default function Home() {
       {/* Map Section */}
       <section className="bg-primary text-white">
         <div className="container mx-auto px-6 md:px-12 py-16 md:py-24">
-          <h2 className="text-3xl md:text-4xl font-extrabold mb-12 lg:mb-16 text-center tracking-tight">Où nous trouver</h2>
+          <h2 className="text-3xl md:text-4xl font-title font-extrabold mb-12 lg:mb-16 text-center tracking-tight">Où nous trouver</h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 items-center max-w-6xl mx-auto">
             <div className="text-left font-medium text-[13px] md:text-sm">
               <p className="mb-6 leading-relaxed opacity-95 text-lg">
-                Venez découvrir notre univers de gourmandises et de bien-être directement en boutique. 
+                Venez découvrir notre univers de gourmandises et de bien-être directement en boutique.
                 Nous vous accueillons dans un cadre chaleureux et élégant, pensé pour votre détente.
               </p>
               <p className="opacity-95 leading-relaxed text-lg">
-                Que vous soyez de passage pour une pause café, un snack rapide ou pour récupérer une commande personnalisée, 
+                Que vous soyez de passage pour une pause café, un snack rapide ou pour récupérer une commande personnalisée,
                 notre équipe est ravie de vous servir avec le sourire.
               </p>
             </div>
@@ -512,6 +553,14 @@ export default function Home() {
       </section>
 
       <Footer />
+
+      {/* Category FAB - Conditional visibility based on "Nos Créations" section */}
+      <CategoryFAB
+        categories={homeCategories}
+        activeFilter={activeTab.toString()}
+        onFilterChange={(id) => setActiveTab(parseInt(id))}
+        forceVisible={isCreationsVisible}
+      />
     </>
   );
 }

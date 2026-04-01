@@ -2,7 +2,7 @@ export interface Product {
   id: number;
   name: string;
   price: number;
-  category: 'cafe' | 'dessert' | 'boisson' | 'petit-dejeuner';
+  category: 'gateaux' | 'viennoiseries' | 'salades' | 'jus';
   image: string;
   description: string;
 }

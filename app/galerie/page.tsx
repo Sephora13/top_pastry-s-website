@@ -51,7 +51,7 @@ export default function Galerie() {
         >
           <i className="fas fa-bars text-xl"></i>
         </button>
-        <button className="bg-primary text-white py-3.5 rounded-full font-bold text-sm tracking-wide border-2 border-white hover:bg-white hover:text-primary transition-colors shadow-2xl" style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}>
+        <button className="bg-primary text-white py-3.5 rounded-full font-title font-bold text-sm tracking-wide border-2 border-white hover:bg-white hover:text-primary transition-colors shadow-2xl" style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}>
           Ça m'intéresse
         </button>
       </div>
@@ -77,7 +77,7 @@ export default function Galerie() {
 
           {/* Hero Title */}
           <motion.h1 
-            className="font-black text-5xl md:text-7xl lg:text-[5.5rem] leading-[1.05] text-white tracking-tight mb-8"
+            className="font-title font-black text-5xl md:text-7xl lg:text-[5.5rem] leading-[1.05] text-white tracking-tight mb-8"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.2 }}
@@ -92,7 +92,7 @@ export default function Galerie() {
       <section className="relative bg-white text-gray-800 py-24 md:py-32 px-6 rounded-t-[3rem] -mt-10 z-20">
         <div className="container mx-auto max-w-7xl">
           <motion.div {...slideUp} className="text-center mb-16 md:mb-20 max-w-4xl mx-auto">
-            <h2 className="font-black text-5xl md:text-7xl text-primary mb-6">Pourquoi nous<br/>choisir ?</h2>
+            <h2 className="font-title font-black text-5xl md:text-7xl text-primary mb-6">Pourquoi nous<br/>choisir ?</h2>
             <p className="text-sm md:text-base font-medium leading-relaxed text-gray-600">
               Depuis 2021, nous t’accompagnons avec des solutions traiteur pensées pour tous tes événements 
               d'entreprise. Attire de nouveaux prospects, crée de vrais moments de convivialité au bureau et 
@@ -108,7 +108,7 @@ export default function Galerie() {
             >
               <Image src="/image/bg2.jpg" alt="Savoir Faire" fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
               <div className="absolute inset-0 bg-linear-to-t from-primary/90 via-primary/50 to-transparent flex flex-col justify-end p-8 md:p-12">
-                <h3 className="font-black text-3xl md:text-4xl text-white mb-4">Un savoir-faire né de l'exigence</h3>
+                <h3 className="font-title font-black text-3xl md:text-4xl text-white mb-4">Un savoir-faire né de l'exigence</h3>
                 <p className="text-sm md:text-base font-medium text-white/90 leading-relaxed max-w-md">
                   Notre équipe a accompagné les plus belles marques et institutions à travers des 
                   séminaires, cocktails, galas et lancements. Chaque prestation est pensée comme une œuvre 
@@ -123,7 +123,7 @@ export default function Galerie() {
             >
               <Image src="/image/bg3.jpg" alt="Experience" fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
               <div className="absolute inset-0 bg-gradient-to-t from-primary-dark/90 via-primary-dark/50 to-transparent flex flex-col justify-end p-8 md:p-12">
-                <h3 className="font-black text-3xl md:text-4xl text-white mb-4">Une expérience sur mesure</h3>
+                <h3 className="font-title font-black text-3xl md:text-4xl text-white mb-4">Une expérience sur mesure</h3>
                 <p className="text-sm md:text-base font-medium text-white/90 leading-relaxed max-w-md">
                   Aucun événement ne se ressemble. Nous concevons des solutions totalement personnalisées, 
                   du menu à la mise en scène selon tes besoins, tes contraintes et tes ambitions. 
@@ -141,7 +141,7 @@ export default function Galerie() {
         <div className="container mx-auto max-w-5xl relative z-10 text-center">
           <motion.h2 
             {...slideUp}
-            className="font-black text-4xl md:text-6xl lg:text-7xl text-white mb-16"
+            className="font-title font-black text-4xl md:text-6xl lg:text-7xl text-white mb-16"
           >
             Ils ont adoré nos<br/>services mais<br/>surtout nos plats
           </motion.h2>
@@ -207,7 +207,7 @@ export default function Galerie() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="font-black text-4xl md:text-5xl lg:text-6xl mb-6 tracking-tight"
+            className="font-title font-black text-4xl md:text-5xl lg:text-6xl mb-6 tracking-tight"
           >
             Réservez nos services<br/>pour votre événement
           </motion.h2>
@@ -256,7 +256,7 @@ export default function Galerie() {
               <label className="block text-sm font-bold mb-2">Détails de votre demande</label>
               <textarea rows={4} className="w-full bg-white/20 border border-white/30 rounded-xl px-4 py-3 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white resize-none" placeholder="Précisez nous ce que vous recherchez..."></textarea>
             </div>
-            <button type="button" className="w-full bg-white text-primary font-black py-4 rounded-xl hover:bg-cream transition-colors shadow-lg active:scale-95 transform duration-200">
+            <button type="button" className="w-full bg-white text-primary font-title font-black py-4 rounded-xl hover:bg-cream transition-colors shadow-lg active:scale-95 transform duration-200">
               Envoyer ma demande
             </button>
           </motion.form>

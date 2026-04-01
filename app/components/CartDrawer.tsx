@@ -99,7 +99,7 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
             
             {/* Header */}
             <div className="px-6 pt-10 pb-6 relative z-10">
-              <h2 className="text-2xl font-black text-white px-2 tracking-tight">Mon panier</h2>
+              <h2 className="text-2xl font-title font-black text-white px-2 tracking-tight">Mon panier</h2>
               <button 
                 onClick={onClose}
                 className="absolute top-10 right-6 text-white text-xl p-2 hover:bg-white/10 rounded-full transition cursor-pointer"
@@ -137,7 +137,7 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
                         
                         {/* Title & Category (Left) */}
                         <div className="flex flex-col max-w-[55%]">
-                          <h3 className="text-white font-extrabold text-[16px] leading-[1.15] mb-2 tracking-wide">
+                          <h3 className="text-white font-title font-extrabold text-[16px] leading-[1.15] mb-2 tracking-wide">
                             Tiramisu<br/>à la<br/>Mangue-<br/>Passion
                           </h3>
                           <p className="text-white/80 font-black text-[10px] uppercase tracking-widest leading-tight mt-1">
@@ -147,7 +147,7 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
 
                         {/* Price, Retirer & Counter (Right) */}
                         <div className="flex flex-col items-center shrink-0 w-28 text-right">
-                          <p className="text-white font-black text-sm tracking-wide mb-1 flex items-baseline gap-1">
+                          <p className="text-white font-black text-sm font-title tracking-wide mb-1 flex items-baseline gap-1">
                             <span className="text-lg leading-none">{item.price.toLocaleString('fr-FR')}</span>
                             <span className="text-[10px] font-bold">F CFA</span>
                           </p>
@@ -195,12 +195,12 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
               <div className="flex gap-4 px-2">
                 <button 
                   onClick={onClose}
-                  className="flex-1 bg-transparent border-2 border-white/40 hover:border-white text-white font-bold text-[12px] tracking-widest py-3.5 rounded-full hover:bg-white/10 transition-all uppercase"
+                  className="flex-1 bg-transparent border-2 border-white/40 hover:border-white text-white font-title font-bold text-[12px] tracking-widest py-3.5 rounded-full hover:bg-white/10 transition-all uppercase"
                 >
                   Continuer
                 </button>
                 <button 
-                  className="flex-1 bg-white border-2 border-white text-primary font-bold text-[12px] tracking-widest py-3.5 rounded-full hover:scale-[1.03] transition-transform uppercase shadow-lg shadow-black/20"
+                  className="flex-1 bg-white border-2 border-white text-primary font-title font-bold text-[12px] tracking-widest py-3.5 rounded-full hover:scale-[1.03] transition-transform uppercase shadow-lg shadow-black/20"
                 >
                   Commander
                 </button>

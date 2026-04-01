@@ -35,18 +35,18 @@ export default function ProductCard({ product, showBuyButton = true }: ProductCa
       </div>
 
       <div className="p-4">
-        <h3 className="text-lg font-semibold text-black mb-2">
+        <h3 className="text-lg font-title font-semibold text-black mb-2">
           {product.name}
         </h3>
         <p className="text-gray-500 text-sm mb-4 h-12 overflow-hidden">
           {product.description}
         </p>
         <div className="flex justify-between items-center">
-          <span className="font-bold text-orange-medium">
+          <span className="font-title font-bold text-orange-medium">
             {product.price.toFixed(2)} FCFA
           </span>
           {showBuyButton && (
-            <button className="bg-red-dark hover:bg-[#5D2906] text-white px-4 py-1 rounded-full text-sm transition">
+            <button className="bg-red-dark hover:bg-[#5D2906] text-white px-4 py-1 rounded-full text-sm font-title transition">
               Acheter
             </button>
           )}

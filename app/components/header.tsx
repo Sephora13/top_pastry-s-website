@@ -16,20 +16,23 @@ export default function Header() {
       <nav className="container mx-auto bg-primary text-white px-2 py-2 rounded-full flex items-center justify-between shadow-lg max-w-5xl relative z-50">
         {/* Logo - Left */}
         <Link href="/" className="flex items-center w-1/4">
-          <div className=" text-white px-5 py-2.5 rounded-full text-[16px] font-extrabold tracking-wide ml-2 whitespace-nowrap">
+          <div className="text-white px-5 py-2.5 rounded-full text-[18px] font-title font-extrabold tracking-wide ml-2 whitespace-nowrap">
             Top Pastry
           </div>
         </Link>
 
         {/* Menu desktop - Center */}
         <div className="hidden md:flex justify-center space-x-12 w-2/4">
-          <Link href="/" className="hover:text-gray-200 transition text-[13px] font-medium tracking-wide">
+          <Link href="/" className="hover:text-gray-200 transition text-[16px] font-title font-medium tracking-wide">
             Accueil
           </Link>
-          <Link href="/galerie" className="hover:text-gray-200 transition text-[13px] font-medium tracking-wide">
+          <Link href="/galerie" className="hover:text-gray-200 transition text-[16px] font-title font-medium tracking-wide">
             Galerie
           </Link>
-          <Link href="/#contact" className="hover:text-gray-200 transition text-[13px] font-medium tracking-wide">
+           <Link href="/produits" className="hover:text-gray-200 transition text-[16px] font-title font-medium tracking-wide">
+            Nos Délices
+          </Link>
+          <Link href="/#contact" className="hover:text-gray-200 transition text-[16px] font-title font-medium tracking-wide">
             Contact
           </Link>
         </div>
@@ -37,10 +40,7 @@ export default function Header() {
         {/* Icons / Actions - Right */}
         <div className="hidden md:flex justify-end items-center pr-4 w-1/4">
           <button onClick={() => setIsCartOpen(true)} className="relative hover:text-gray-200 transition group p-2 cursor-pointer">
-            <FontAwesomeIcon icon={faShoppingCart} className="w-5 h-5" />
-            <span className="absolute top-0 right-0 bg-yellow-400 text-primary text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center transform translate-x-1 -translate-y-1 shadow-sm">
-              3
-            </span>
+            <FontAwesomeIcon icon={faShoppingCart} className="w-8 h-8" />
           </button>
         </div>
 
@@ -48,9 +48,7 @@ export default function Header() {
         <div className="md:hidden flex items-center gap-4 pr-3">
           <button onClick={() => setIsCartOpen(true)} className="relative hover:text-gray-200 transition p-2 cursor-pointer">
             <FontAwesomeIcon icon={faShoppingCart} className="w-5 h-5 text-white" />
-            <span className="absolute top-0 right-0 bg-yellow-400 text-primary text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center transform -translate-y-0.5">
-              3
-            </span>
+           
           </button>
           <button
             className="text-2xl focus:outline-none text-white"
@@ -81,7 +79,7 @@ export default function Header() {
                 <FontAwesomeIcon icon={faTimes} className="text-white text-lg" />
               </button>
               
-              <div className="font-extrabold text-xl tracking-wide whitespace-nowrap">
+              <div className="font-title font-extrabold text-xl tracking-wide whitespace-nowrap">
                 Top Pastry
               </div>
 
@@ -96,60 +94,47 @@ export default function Header() {
               <div className="space-y-7">
                 <Link href="/" onClick={() => setIsOpen(false)} className="flex items-center gap-5 text-white hover:text-white/80 transition group">
                   <div className="w-6 flex justify-center"><FontAwesomeIcon icon={faHome} className="text-xl opacity-90" /></div>
-                  <span className="font-bold text-[17px]">Accueil</span>
+                  <span className="font-title font-bold text-[17px]">Accueil</span>
                 </Link>
 
                 <Link href="/galerie" onClick={() => setIsOpen(false)} className="flex items-center gap-5 text-white hover:text-white/80 transition group">
                   <div className="w-6 flex justify-center"><FontAwesomeIcon icon={faImages} className="text-xl opacity-90" /></div>
-                  <span className="font-bold text-[17px]">Galerie Photo</span>
+                  <span className="font-title font-bold text-[17px]">Galerie Photo</span>
                   <span className="ml-2 bg-white/10 text-white/90 text-[9px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">Nouveau</span>
                 </Link>
 
                 <Link href="/produits" onClick={() => setIsOpen(false)} className="flex items-center gap-5 text-white hover:text-white/80 transition group">
                   <div className="w-6 flex justify-center"><FontAwesomeIcon icon={faCakeCandles} className="text-xl opacity-90" /></div>
-                  <span className="font-bold text-[17px]">Nos Produits</span>
+                  <span className="font-title font-bold text-[17px]">Nos Produits</span>
                 </Link>
 
                 <button onClick={() => { setIsOpen(false); setIsCartOpen(true); }} className="flex items-center gap-5 text-white hover:text-white/80 transition group w-full text-left cursor-pointer">
                   <div className="w-6 flex justify-center"><FontAwesomeIcon icon={faShoppingBag} className="text-xl opacity-90" /></div>
-                  <span className="font-bold text-[17px]">Mon Panier</span>
+                  <span className="font-title font-bold text-[17px]">Mon Panier</span>
                 </button>
 
-                <Link href="/" onClick={() => setIsOpen(false)} className="flex items-center gap-5 text-white hover:text-white/80 transition group">
-                  <div className="w-6 flex justify-center"><FontAwesomeIcon icon={faGift} className="text-xl opacity-90" /></div>
-                  <span className="font-bold text-[17px]">Mon espace Gourmet</span>
-                  <span className="ml-2 bg-white/10 text-white/90 text-[9px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">Beta</span>
-                </Link>
               </div>
 
               <div className="my-10 h-px bg-white/10 w-8/12" />
 
               {/* Secondary Links */}
               <div className="space-y-7">
-                <Link href="/#contact" onClick={() => setIsOpen(false)} className="flex items-center gap-5 text-white hover:text-white/80 transition group">
-                  <div className="w-6 flex justify-center"><FontAwesomeIcon icon={faComment} className="text-xl opacity-90" /></div>
-                  <span className="font-bold text-[17px]">Contacte la Team</span>
-                </Link>
-
+              
                 <a href="#" className="flex items-center gap-5 text-white hover:text-white/80 transition group">
                   <div className="w-6 flex justify-center"><FontAwesomeIcon icon={faCircle} className="text-xl opacity-90" /></div>
-                  <span className="font-bold text-[17px]">Suis-nous sur Instagram</span>
+                  <span className="font-title font-bold text-[17px]">Suis-nous sur Instagram</span>
                 </a>
 
                 <a href="#" className="flex items-center gap-5 text-white hover:text-white/80 transition group">
                   <div className="w-6 flex justify-center"><FontAwesomeIcon icon={faCircle} className="text-xl opacity-90" /></div>
-                  <span className="font-bold text-[17px]">Suis-nous sur Facebook</span>
+                  <span className="font-title font-bold text-[17px]">Suis-nous sur Facebook</span>
                 </a>
 
                 <Link href="/cgv" onClick={() => setIsOpen(false)} className="flex items-center gap-5 text-white hover:text-white/80 transition group">
                   <div className="w-6 flex justify-center"><FontAwesomeIcon icon={faShieldAlt} className="text-xl opacity-90" /></div>
-                  <span className="font-bold text-[17px]">CGV</span>
+                  <span className="font-title font-bold text-[17px]">CGV</span>
                 </Link>
 
-                <Link href="/#mentions-legales" onClick={() => setIsOpen(false)} className="flex items-center gap-5 text-white hover:text-white/80 transition group">
-                  <div className="w-6 flex justify-center"><FontAwesomeIcon icon={faLandmark} className="text-xl opacity-90" /></div>
-                  <span className="font-bold text-[17px]">Mentions légales</span>
-                </Link>
               </div>
             </div>
           </motion.div>

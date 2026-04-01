@@ -1,17 +1,18 @@
 import type { Metadata } from "next";
-import { Josefin_Sans, Fredoka } from "next/font/google";
+import { Titan_One, Sora } from "next/font/google";
 import "./globals.css";
+import "remixicon/fonts/remixicon.css";
 
-const josefin = Josefin_Sans({
+const titan = Titan_One({
   subsets: ["latin"],
-  variable: "--font-josefin",
-  weight: ["400", "500", "600", "700"],
+  variable: "--font-titan",
+  weight: ["400"],
 });
 
-const fredoka = Fredoka({
+const sora = Sora({
   subsets: ["latin"],
-  variable: "--font-custom",
-  weight: ["700"],
+  variable: "--font-sora",
+  weight: ["300", "400", "500", "600", "700", "800"],
 });
 
 export const metadata: Metadata = {
@@ -29,7 +30,7 @@ export default function RootLayout({
       <head>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"></link>
       </head>
-      <body suppressHydrationWarning className={`${josefin.variable} ${fredoka.variable} font-sans antialiased`}>
+      <body suppressHydrationWarning className={`${titan.variable} ${sora.variable} font-sans antialiased uppercase-titles`}>
         {children}
       </body>
     </html>
