@@ -5,12 +5,13 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faShoppingCart, faShoppingBag } from '@fortawesome/free-solid-svg-icons';
+import { faShoppingCart, faShoppingBag, faCheck } from '@fortawesome/free-solid-svg-icons';
 import { CategoryFilter, Product } from '../types';
 import { getCategoryName, getProducts } from '../components/lib/storage';
 import Header from '../components/header';
 import Footer from '../components/footer';
 import CategoryFAB from '../components/CategoryFAB';
+import { useCart } from '../components/contexts/CartContext';
 
 const TopoBackground = () => (
   <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.2]">
@@ -38,6 +39,8 @@ export default function ProductsPage() {
   const [products, setProducts] = useState<Product[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [activeFilter, setActiveFilter] = useState<CategoryFilter>('all');
+  const [addedProductId, setAddedProductId] = useState<number | null>(null);
+  const { addToCart } = useCart();
 
   useEffect(() => {
     const loadedProducts = getProducts();
@@ -52,6 +55,12 @@ export default function ProductsPage() {
     } else {
       setFilteredProducts(products.filter(p => p.category === category));
     }
+  };
+
+  const handleAddToCart = (product: Product) => {
+    addToCart(product);
+    setAddedProductId(product.id);
+    setTimeout(() => setAddedProductId(null), 1200);
   };
 
   const categories = [
@@ -183,9 +192,15 @@ export default function ProductsPage() {
                       <motion.button
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        className="bg-primary text-white w-12 h-12 rounded-2xl flex items-center justify-center shadow-lg hover:bg-primary-dark transition-all cursor-pointer group/btn"
+                        onClick={(e) => { e.preventDefault(); handleAddToCart(product); }}
+                        className={`w-12 h-12 rounded-2xl flex items-center justify-center shadow-lg transition-all cursor-pointer group/btn ${
+                          addedProductId === product.id ? 'bg-green-600 text-white' : 'bg-primary text-white hover:bg-primary-dark'
+                        }`}
                       >
-                        <FontAwesomeIcon icon={faShoppingCart} className="w-5 h-5 group-hover/btn:scale-110 transition-transform" />
+                        <FontAwesomeIcon 
+                          icon={addedProductId === product.id ? faCheck : faShoppingCart} 
+                          className="w-5 h-5 group-hover/btn:scale-110 transition-transform" 
+                        />
                       </motion.button>
                     </div>
                   </motion.div>

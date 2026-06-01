@@ -66,7 +66,7 @@ export default function CategoryFAB({
     <div className={`${mobileOnly ? 'md:hidden' : ''}`}>
       <AnimatePresence>
         {(isFabVisible || forceVisible) && (
-          <div className="fixed bottom-10 right-6 z-[100] flex flex-col items-end gap-3 pointer-events-none">
+          <div className="fixed bottom-10 right-6 z-100lex flex-col items-end gap-3 pointer-events-none">
             
             {/* Hint Bubble */}
             <AnimatePresence>

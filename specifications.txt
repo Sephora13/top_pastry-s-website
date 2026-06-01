@@ -1,0 +1,202 @@
+Améliorations fonctionnelles et UI de Top Pastry
+
+Analyse l'application existante et implémente les fonctionnalités suivantes en respectant l'architecture actuelle du projet ainsi que le design déjà en place.
+
+1. Validation des commandes
+
+Modifier le workflow des commandes :
+
+Une commande ne doit être considérée comme validée que lorsque le paiement a été effectué avec succès.
+Tant que le paiement n'est pas confirmé, la commande doit avoir le statut :
+En attente de paiement
+Paiement en cours
+Non payé
+Une fois le paiement confirmé :
+Mettre automatiquement le statut à Validée
+Enregistrer la transaction
+Déclencher les notifications administrateur
+2. Notification WhatsApp automatique
+
+Lorsqu'une commande est validée :
+
+Dashboard Administrateur
+
+Conserver l'envoi de la notification actuelle sur le dashboard administrateur.
+
+WhatsApp
+
+Ajouter l'envoi automatique des informations de commande via WhatsApp.
+
+Le message doit contenir :
+
+Numéro de commande
+Nom du client
+Téléphone
+Adresse de livraison
+Produits commandés
+Quantité de chaque produit
+Montant total
+Moyen de paiement
+Date et heure
+Statut du paiement
+
+Exemple :
+
+Commande validée
+
+Commande : TP284854
+
+Client : Sephora DIDAVI
+Téléphone : +229 XX XX XX XX
+
+Produits :
+
+Fraisier Royal x2
+Croissants Pur Beurre x6
+
+Montant : 70 000 FCFA
+
+Paiement : Confirmé
+
+Adresse :
+Cotonou, Bénin
+
+Date :
+20/05/2026 - 14:25
+
+Prévoir une architecture permettant ultérieurement d'utiliser :
+
+WhatsApp Cloud API
+Twilio WhatsApp
+Meta Business API
+
+sans refactorisation importante.
+
+3. Création d'une page Contact
+
+Créer une nouvelle page Contact en restant fidèle à l'identité visuelle du site :
+
+Respect du design existant
+
+Conserver :
+
+Les couleurs actuelles
+Les arrondis
+La typographie
+Les espacements
+Les ombres
+Le style moderne de Top Pastry
+
+La page doit sembler avoir été conçue en même temps que le reste de l'application.
+
+4. Contenu de la page Contact
+
+Créer les sections suivantes :
+
+Hero
+
+Titre :
+
+Contactez-nous
+
+Sous-titre :
+
+Une question, une commande spéciale ou un besoin particulier ? Notre équipe vous répond rapidement.
+
+Informations
+
+Afficher :
+
+Téléphone
+Email
+Adresse
+Horaires d'ouverture
+
+avec des icônes cohérentes avec le design du site.
+
+Formulaire
+
+Champs :
+
+Nom complet
+Email
+Téléphone
+Sujet
+Message
+
+Validation des champs obligatoire.
+
+5. Envoi du formulaire sans quitter le site
+
+L'utilisateur ne doit jamais être redirigé vers :
+
+Gmail
+Outlook
+WhatsApp
+Une autre application
+
+Le formulaire doit être envoyé directement depuis l'application.
+
+Adresse de réception :
+
+sephoradidavi6@gmail.com
+
+Mettre en place :
+
+Backend
+
+Créer une API sécurisée permettant :
+
+POST /contact
+
+Corps :
+
+{
+  "name": "",
+  "email": "",
+  "phone": "",
+  "subject": "",
+  "message": ""
+}
+Envoi Email
+
+Utiliser une solution serveur :
+
+Nodemailer
+SMTP
+SendGrid
+Brevo
+
+Le mail reçu doit être bien formaté en HTML.
+
+6. Expérience utilisateur
+
+Ajouter :
+
+Loader pendant l'envoi
+Désactivation du bouton pendant la requête
+Gestion des erreurs
+Message de succès élégant
+
+Exemple :
+
+✓ Votre message a été envoyé avec succès.
+Nous vous répondrons dans les plus brefs délais.
+
+Le tout sous forme de toast ou snackbar cohérent avec le design existant.
+
+7. Responsive
+
+Vérifier que :
+
+Mobile
+Tablette
+Desktop
+
+sont parfaitement pris en charge.
+
+Aucun débordement, chevauchement ou problème d'espacement ne doit subsister.
+
+Fournis directement les fichiers modifiés et le code complet prêt à être intégré au projet, sans pseudocode.
+
+Commande personnalisé, modèle de gateau special, hors du catalogue, ajouter un texte pour inviter à contacter pour des commandes personnalisées. interface pour ajouter des details à chaque commande, glacage special, decoration speciale 

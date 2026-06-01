@@ -1,17 +1,32 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import Header from '../../components/header';
 import Footer from '../../components/footer';
 import { useParams } from 'next/navigation';
+import { getProducts } from '../../components/lib/storage';
+import { Product } from '../../types';
+import { useCart } from '../../components/contexts/CartContext';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheck } from '@fortawesome/free-solid-svg-icons';
 
 export default function ProductDetail() {
   const params = useParams();
   const id = params?.id || '1';
-  let imageIndex = Number(id) + 1;
-  if(isNaN(imageIndex) || imageIndex > 18) imageIndex = 2; // Default fallback to a valid cake image
+  
+  const [product, setProduct] = useState<Product | null>(null);
+  const [addedToCart, setAddedToCart] = useState(false);
+  const { addToCart } = useCart();
+
+  useEffect(() => {
+    const products = getProducts();
+    const foundProduct = products.find(p => p.id.toString() === id);
+    if (foundProduct) {
+      setProduct(foundProduct);
+    }
+  }, [id]);
 
   // 3D Parallax Hover State
   const x = useMotionValue(0);
@@ -47,7 +62,7 @@ export default function ProductDetail() {
   const [accessories, setAccessories] = useState<string[]>([]);
   const [color, setColor] = useState('#63256A'); // Default primary
 
-  const basePrice = 25000;
+  const basePrice = product ? product.price : 25000;
   
   // Fake complex calculations
   const calculateTotal = () => {
@@ -72,6 +87,18 @@ export default function ProductDetail() {
   const accessList = ['Bougie (+500F)', 'Message personnalisé (+500F)', 'Plaquette joyeux anniversaire (+500F)'];
   const colorsList = ['#63256A', '#FDEBD0', '#342211', '#D35400', '#2C3E50', '#E74C3C'];
 
+  if (!product) {
+    return (
+      <>
+        <Header />
+        <div className="min-h-screen bg-cream pt-32 pb-32 flex items-center justify-center">
+          <h1 className="text-3xl font-title font-bold text-primary">Produit non trouvé...</h1>
+        </div>
+        <Footer />
+      </>
+    );
+  }
+
   return (
     <>
       <Header />
@@ -94,8 +121,8 @@ export default function ProductDetail() {
                 className="relative w-full aspect-square max-w-[600px] rounded-[30px] overflow-hidden shadow-2xl bg-white border-8 border-white cursor-crosshair origin-center"
               >
                 <Image
-                  src={`/image/gateau${imageIndex}.jpg`}
-                  alt="Product Image"
+                  src={product.image}
+                  alt={product.name}
                   fill
                   className="object-cover"
                 />
@@ -110,10 +137,10 @@ export default function ProductDetail() {
               className="flex flex-col space-y-12 mt-12 lg:mt-0"
             >
               <div>
-                <h1 className="text-4xl md:text-5xl font-title font-black text-primary mb-4 tracking-tight">Gâteau Personnalisable</h1>
+                <h1 className="text-4xl md:text-5xl font-title font-black text-primary mb-4 tracking-tight">{product.name}</h1>
                 <p className="text-2xl font-title font-bold text-gray-800 tracking-wide">{basePrice} FCFA</p>
                 <p className="text-gray-500 mt-4 leading-relaxed bg-white/50 p-4 rounded-xl border border-white">
-                  Créez le gâteau de vos rêves en sélectionnant vos combinaisons parfaites ci-dessous. Chaque création est préparée avec soin et un souci du détail pour rendre votre événement mémorable.
+                  {product.description}
                 </p>
               </div>
 
@@ -207,12 +234,30 @@ export default function ProductDetail() {
                   <span className="text-gray-500 font-title font-bold text-lg">Total calculé :</span>
                   <span className="text-3xl font-title font-black text-primary">{calculateTotal()} <span className="text-xl">FCFA</span></span>
                 </div>
-                <motion.button 
+              <motion.button 
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="w-full bg-primary text-white py-4 rounded-xl font-title font-black text-lg tracking-wider uppercase shadow-lg hover:bg-primary-dark transition-all cursor-pointer"
+                  onClick={() => {
+                    if (product) {
+                      addToCart({ ...product, price: calculateTotal() });
+                      setAddedToCart(true);
+                      setTimeout(() => setAddedToCart(false), 2000);
+                    }
+                  }}
+                  className={`w-full py-4 rounded-xl font-title font-black text-lg tracking-wider uppercase shadow-lg transition-all cursor-pointer ${
+                    addedToCart 
+                      ? 'bg-green-600 text-white' 
+                      : 'bg-primary text-white hover:bg-primary-dark'
+                  }`}
                 >
-                  Ajouter au panier
+                  {addedToCart ? (
+                    <span className="flex items-center justify-center gap-2">
+                      <FontAwesomeIcon icon={faCheck} className="w-5 h-5" />
+                      Ajouté au panier !
+                    </span>
+                  ) : (
+                    'Ajouter au panier'
+                  )}
                 </motion.button>
               </div>
 

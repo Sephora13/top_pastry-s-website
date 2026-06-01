@@ -3,13 +3,15 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCoffee, faBars, faTimes, faShoppingCart, faMap, faEye, faGift, faHeart, faComment, faCircle, faShieldAlt, faLandmark, faHome, faImages, faCakeCandles, faShoppingBag } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faTimes, faShoppingCart, faShieldAlt, faHome, faImages, faCakeCandles, faShoppingBag, faCircle } from '@fortawesome/free-solid-svg-icons';
 import { motion, AnimatePresence } from 'framer-motion';
 import CartDrawer from './CartDrawer';
+import { useCart } from './contexts/CartContext';
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const { totalItems } = useCart();
 
   return (
     <header className="fixed top-0 left-0 right-0 z-100 pt-6 px-4">
@@ -23,16 +25,16 @@ export default function Header() {
 
         {/* Menu desktop - Center */}
         <div className="hidden md:flex justify-center space-x-12 w-2/4">
-          <Link href="/" className="hover:text-gray-200 transition text-[16px] font-title font-medium tracking-wide">
+          {/* <Link href="/" className="hover:text-gray-200 transition text-[16px] font-title font-medium tracking-wide">
             Accueil
-          </Link>
-          <Link href="/galerie" className="hover:text-gray-200 transition text-[16px] font-title font-medium tracking-wide">
-            Galerie
-          </Link>
+          </Link> */}
            <Link href="/produits" className="hover:text-gray-200 transition text-[16px] font-title font-medium tracking-wide">
             Nos Délices
           </Link>
-          <Link href="/#contact" className="hover:text-gray-200 transition text-[16px] font-title font-medium tracking-wide">
+           <Link href="/galerie" className="hover:text-gray-200 transition text-[16px] font-title font-medium tracking-wide">
+            Evènements
+          </Link>
+          <Link href="/contact" className="hover:text-gray-200 transition text-[16px] font-title font-medium tracking-wide">
             Contact
           </Link>
         </div>
@@ -41,6 +43,15 @@ export default function Header() {
         <div className="hidden md:flex justify-end items-center pr-4 w-1/4">
           <button onClick={() => setIsCartOpen(true)} className="relative hover:text-gray-200 transition group p-2 cursor-pointer">
             <FontAwesomeIcon icon={faShoppingCart} className="w-8 h-8" />
+            {totalItems > 0 && (
+              <motion.span
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                className="absolute -top-1 -right-1 bg-white text-primary text-[11px] font-black w-5 h-5 rounded-full flex items-center justify-center shadow-md"
+              >
+                {totalItems > 99 ? '99+' : totalItems}
+              </motion.span>
+            )}
           </button>
         </div>
 
@@ -48,7 +59,15 @@ export default function Header() {
         <div className="md:hidden flex items-center gap-4 pr-3">
           <button onClick={() => setIsCartOpen(true)} className="relative hover:text-gray-200 transition p-2 cursor-pointer">
             <FontAwesomeIcon icon={faShoppingCart} className="w-5 h-5 text-white" />
-           
+            {totalItems > 0 && (
+              <motion.span
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                className="absolute -top-1 -right-1 bg-white text-primary text-[10px] font-black w-4 h-4 rounded-full flex items-center justify-center shadow-md"
+              >
+                {totalItems > 99 ? '99+' : totalItems}
+              </motion.span>
+            )}
           </button>
           <button
             className="text-2xl focus:outline-none text-white"
@@ -85,6 +104,11 @@ export default function Header() {
 
               <button onClick={() => { setIsOpen(false); setIsCartOpen(true); }} className="relative w-10 h-10 flex items-center justify-center bg-white/10 rounded-full cursor-pointer hover:bg-white/20 transition">
                 <FontAwesomeIcon icon={faShoppingCart} className="w-4 h-4 text-white" />
+                {totalItems > 0 && (
+                  <span className="absolute -top-1 -right-1 bg-white text-primary text-[10px] font-black w-4 h-4 rounded-full flex items-center justify-center shadow-md">
+                    {totalItems > 99 ? '99+' : totalItems}
+                  </span>
+                )}
               </button>
             </div>
 
@@ -97,25 +121,24 @@ export default function Header() {
                   <span className="font-title font-bold text-[17px]">Accueil</span>
                 </Link>
 
-                <Link href="/galerie" onClick={() => setIsOpen(false)} className="flex items-center gap-5 text-white hover:text-white/80 transition group">
-                  <div className="w-6 flex justify-center"><FontAwesomeIcon icon={faImages} className="text-xl opacity-90" /></div>
-                  <span className="font-title font-bold text-[17px]">Galerie Photo</span>
-                  <span className="ml-2 bg-white/10 text-white/90 text-[9px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">Nouveau</span>
-                </Link>
-
                 <Link href="/produits" onClick={() => setIsOpen(false)} className="flex items-center gap-5 text-white hover:text-white/80 transition group">
                   <div className="w-6 flex justify-center"><FontAwesomeIcon icon={faCakeCandles} className="text-xl opacity-90" /></div>
-                  <span className="font-title font-bold text-[17px]">Nos Produits</span>
+                  <span className="font-title font-bold text-[17px]">Nos Délices</span>
                 </Link>
 
-                <button onClick={() => { setIsOpen(false); setIsCartOpen(true); }} className="flex items-center gap-5 text-white hover:text-white/80 transition group w-full text-left cursor-pointer">
+                 <Link href="/galerie" onClick={() => setIsOpen(false)} className="flex items-center gap-5 text-white hover:text-white/80 transition group">
+                  <div className="w-6 flex justify-center"><FontAwesomeIcon icon={faImages} className="text-xl opacity-90" /></div>
+                  <span className="font-title font-bold text-[17px]">Evènements</span>
+                </Link>
+                
+                <Link href="/contact" onClick={() => setIsOpen(false)} className="flex items-center gap-5 text-white hover:text-white/80 transition group w-full text-left">
                   <div className="w-6 flex justify-center"><FontAwesomeIcon icon={faShoppingBag} className="text-xl opacity-90" /></div>
-                  <span className="font-title font-bold text-[17px]">Mon Panier</span>
-                </button>
+                  <span className="font-title font-bold text-[17px]">Contact</span>
+                </Link>
 
               </div>
 
-              <div className="my-10 h-px bg-white/10 w-8/12" />
+              <div className="my-10 h-px bg-white/10 w-12/12" />
 
               {/* Secondary Links */}
               <div className="space-y-7">
